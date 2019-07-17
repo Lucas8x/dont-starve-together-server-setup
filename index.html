@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Don't Starve Together Server</title>
+    <link href="dstserver.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  </head>
+  
+  <body>
+    <div class="tabs">
+      <button class="tabButton" value="settings">Settings</button>
+      <button class="tabButton" value="forest">Forest</button>
+      <button class="tabButton" value="caves">Caves</button>
+      <button class="tabButton" value="mods">Mods</button>
+    </div>
+
+    <div id="border1"></div>
+    <div id="box">
+      <div id="settings" class="tab">
+
+        <div id="choice_play_style">
+          <p>What's your server's playstyle?</p>
+          <button id="social" type="button" class="play_style_buttons">
+            <img src="assets/tabSettings/playstyle/social.png" />
+          </button>
+          <button id="cooperative" type="button" class="play_style_buttons">
+            <img src="assets/tabSettings/playstyle/cooperative.png" />
+          </button>
+          <button id="competitive" type="button" class="play_style_buttons">
+            <img src="assets/tabSettings/playstyle/competitive.png" />
+          </button>
+          <button id="madness" type="button" class="play_style_buttons">
+            <img src="assets/tabSettings/playstyle/madness.png" />
+          </button>
+          <p id="info_playstyle"></p>
+        </div>
+        
+        <div id="after_play_style">
+          <div id="play_style_div" class="option_background">
+            <span>Server Playstyle: </span>
+            <button id='play_style_str' class="lb"></button>
+          </div>
+          <br>
+
+          <div id="server_name" class="option_background">
+            <span>Name: </span><input name="cluster_name">
+          </div>
+          <br>
+
+          <div id="description" class="option_background">
+            <span>Description: </span><input name="cluster_description">
+          </div>
+          <br>
+
+          <div id="server_visibility" class="option_background">
+              <input type="radio" name="serverVisibility" value="public" checked>Public
+              <input type="radio" name="serverVisibility" value="friendsonly">Friends Only
+              <input type="radio" name="serverVisibility" value="localonly">Local Only
+              <input type="radio" name="serverVisibility" value="steamgroup">Steam Group
+          </div>
+          <div id="steamgroupinfo">
+            <br> <!-- [STEAM] -->
+            <div class="tiny_option_background">Group ID:
+              <input type="text" name="groupid"></div>
+            <div class="tiny_option_background">Members Only:
+              <button class="arrow-left"></button>
+              <span type="text" name="opt">False</span>
+              <button class="arrow-right"></button>
+            </div>
+            <div class="tiny_option_background">Auto Group Admins:
+              <button class="arrow-left"></button>
+              <span type="text" name="opt">False</span>
+              <button class="arrow-right"></button>
+            </div>
+          </div>
+          <br>
+
+          <div id="game_mode" class="option_background">
+            <span>Game Mode: </span>
+            <button class="arrow-left"></button>
+            <span type="text" name="game_mode">Survival</span>
+            <button class="arrow-right"></button>
+          </div>
+          <br>
+
+          <div id="pvp" class="option_background">
+            <span>PvP: </span>
+            <button class="arrow-left"></button>
+            <span type="text" name="pvp">False</span>
+            <button class="arrow-right"></button>
+          </div>
+          <br>
+
+          <div id="players" class="option_background">
+            <span>Players: </span>
+            <button class="arrow-left"></button>
+            <input type="number" name="max_players" value="6">
+            <button class="arrow-right"></button>
+          </div>
+          <br>
+
+          <div id="password" class="option_background">
+            <span>Password: </span><input name="password">
+          </div>
+          <br>
+
+          <div id="server_mode" class="option_background">
+            <span>Server Mode: </span>
+            <button class="arrow-left"></button>
+            <span type="text" name="server_mode">Online</span>
+            <button class="arrow-right"></button>
+          </div>
+          <br>
+
+          <div id="cluster_token" class="option_background">
+            <span>Cluster Token: </span><input name="cluster_token" size="80">
+          </div>
+          <br>
+
+          <div class="option_background">
+            <button id="button_more_settings" class="lb">More Settings</button>
+          </div>
+          <div id="more_settings">
+            <br> <!-- [MISC] -->
+            <div id="max_snapshots" class="tiny_option_background">
+              <span>Max Snapshots: </span>
+              <button class="arrow-left"></button>
+              <input type="number" name="max_snapshots" value="6">
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="console" class="tiny_option_background">
+              <span>Console: </span>
+              <button class="arrow-left"></button>
+              <span type="text" name="console_enabled">true</span>
+              <button class="arrow-right"></button>
+            </div>
+            
+            <br> <!-- [NETWORK] -->
+            <div id="offline_cluster" class="tiny_option_background">
+              <span>Offline Cluster: </span>
+              <button class="arrow-left"></button>
+              <span type="text" name="offline_cluster">false</span>
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="tick_rate" class="tiny_option_background">
+              <span>Tick Rate: </span>
+              <button class="arrow-left"></button>
+              <input type="number" name="tick_rate" value="15">
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="whitelist_slots" class="tiny_option_background">
+              <span>Whitelist Slots: </span>
+              <button class="arrow-left"></button>
+              <input type="number" name="whitelist_slots" value="0">
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="lan_only" class="tiny_option_background">
+              <span>Lan Only: </span>
+              <button class="arrow-left"></button>
+              <span type="text" name="lan_only_cluster">false</span>
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="autosaver_enabled" class="tiny_option_background">
+              <span>Auto Saver: </span>
+              <button class="arrow-left"></button>
+              <span type="text" name="autosaver_enabled">true</span>
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="pause_when_empty" class="tiny_option_background">
+              <span>Pause when Empty: </span>
+              <button class="arrow-left"></button>
+              <span type="text" name="pause_when_empty">false</span>
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="vote_enabled" class="tiny_option_background">
+              <span>Vote Kick Enabled: </span>
+              <button class="arrow-left"></button>
+              <span type="text" name="enable_vote_kick">true</span>
+              <button class="arrow-right"></button>
+            </div>
+            <br>
+            <div id="cluster_language" class="tiny_option_background">
+              <span>Cluster Language </span>
+              <button class="arrow-left"></button>
+              <input type="text" name="cluster_language" value="en">
+              <button class="arrow-right"></button>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    
+      <div id="forest" class="tab">
+      </div>
+
+      <div id="caves" class="tab">
+      </div>
+
+      <div id="mods" class="tab">
+      </div>
+    </div>
+    <div id="border2"></div>
+
+    <div id="manage">
+      <button id="loadServer" class="lb" onclick="load_server()">Load Folder</button>
+      <button id="generateServer" class="lb" onclick="generate_server()">Generate Server</button>
+    </div>
+    
+    <script src="dstserver.js"></script>
+  </body>
+</html>

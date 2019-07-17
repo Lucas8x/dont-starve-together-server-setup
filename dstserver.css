@@ -1,0 +1,309 @@
+@font-face {
+  font-family: 'Belisa plumilla manual';
+  font-style: normal;
+  font-weight: normal;
+  color: #BBA979;
+  src: url(./assets/belisa_plumilla.ttf) format("truetype");
+}
+
+* {
+  font-family: 'Belisa plumilla manual';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+}
+
+body {
+  color: #BBA979;
+  background-image: url(./assets/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#box {
+  background-color: #392C1B;
+  width: 1000px;
+  min-height: 600px;
+  margin: auto;
+  opacity: 0.8;
+  overflow: auto;
+}
+
+/* Top border */
+#border1{
+  margin: auto;
+  width: 1020px;
+  height: 39px;
+  background-image:url('./assets/top.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-top: -1.2em;
+}
+/* Bottom border */
+#border2{
+  margin: auto;
+  width: 1020px;
+  height: 39px;
+  background-image:url('./assets/bottom.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#steamgroupinfo{
+  display: none;
+}
+
+#choice_play_style{
+  margin: auto;
+  text-align: center;
+  align-content: center;
+}
+
+#choice_play_style p, #info_playstyle{
+  font-size: 40px;
+}
+
+.play_style_buttons{
+  padding: 0;
+  border: 0;
+  outline: 0;
+  padding: 0px;
+  background-color: transparent;
+}
+
+.play_style_buttons img:hover{
+  border-style: solid;
+  border-color: #BBA979;
+}
+
+.play_style_buttons img{
+  width: 200px;
+  height: 200px;
+}
+
+#after_play_style{
+  display: none;
+}
+
+#more_settings{
+  display: none;
+}
+
+/* Options Background */
+.option_background{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+
+  background:url(./assets/option_background.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90% 100%;
+  height: 50px;
+}
+
+.tiny_option_background{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+
+  background:url(./assets/option_background.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70% 100%;
+  height: 50px;
+}
+
+/* INPUTS */
+* input{
+  border:0;
+  outline:0;
+  text-align: center;
+  background: url(./assets/input_normal.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+* input:hover{
+  border:0;
+  outline:0;
+  text-align: center;
+  background: url(./assets/input_hover.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+* input:active{
+  border:0;
+  outline:0;
+  text-align: center;
+  background: url(./assets/input_active.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* Long Buttons*/
+
+.lb{
+  border:0;
+  outline:0;
+  background:url(./assets/lb_tiny_normal.png);
+  background-repeat: no-repeat;
+  background-size: 170px 30px;
+  width: 170px;
+  height: 30px;
+}
+
+.lb:hover{
+  border:0;
+  outline:0;
+  background:url(./assets/lb_tiny_hover.png);
+  background-repeat: no-repeat;
+  background-size: 170px 40px;
+  width: 170px;
+  height: 40px;
+}
+
+.lb:active{
+  border:0;
+  outline:0;
+  background:url(./assets/lb_tiny_clicked.png);
+  background-repeat: no-repeat;
+  background-size: 170px 41px;
+  width: 170px;
+  height: 41px;
+}
+
+#manage{
+  margin: auto;
+  width: 1000px;
+}
+
+#loadServer{
+}
+
+#generateServer{
+}
+
+/* Switch Arrows*/
+
+.arrow-left{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_normal.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+}
+
+.arrow-left:hover{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_hover.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+}
+
+.arrow-left:active{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_clicked.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+}
+
+.arrow-left:disabled{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_inactive.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+}
+
+.arrow-right{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_normal.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+  transform: scaleX(-1);
+}
+
+.arrow-right:hover{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_hover.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+  transform: scaleX(-1);
+}
+
+.arrow-right:active{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_clicked.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+  transform: scaleX(-1);
+}
+
+.arrow-right:disabled{
+  border:0;
+  outline:0;
+  background:url(./assets/arrow_inactive.png);
+  background-repeat: no-repeat;
+  background-size: 25px 45px;
+  width: 25px;
+  height: 45px;
+  transform: scaleX(-1);
+}
+
+/* TABS */
+.tabs {
+  margin: auto;
+  overflow: hidden;
+  text-align: center;
+}
+  
+.tabs button {
+  padding: 0;
+  border: 0;
+  outline: 0;
+  padding: 0px;
+  transition: 0.3s;
+  width: 220px;
+  height: 56px;
+  text-align: center;
+  font-size: 40px;
+  background-image: url(./assets/tab_inactive.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+}
+  
+.tabs button:hover {
+  background-image: url(./assets/tab_hover.png), url(./assets/tab_inactive.png);
+}
+  
+.tabs button.active {
+  background-image: url(./assets/tab_active.png);
+}
