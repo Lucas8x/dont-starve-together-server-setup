@@ -20,30 +20,32 @@ $('.play_style_buttons, #play_style_str').on('click', function(){
   $('#play_style_str').html(cluster_intention)
   $('#choice_play_style').toggle() // Show and hide play style selection
   $('#after_play_style').toggle() // Show and hide settings options
-
 });
 
 // Show Play Style info when mouse over
-$('.play_style_buttons').hover(function () {
-  let type = $(this).attr('id');
-  let info_playstyle = $('#info_playstyle');
+$('.play_style_buttons')
+  .mouseenter(function () {
+    let type = $(this).attr('id');
+    let info_playstyle = $('#info_playstyle');
 
-  switch(type){
-    case 'social':
-      info_playstyle.html("This server is a place for friendly chatter, a<br/>relaxed playstyle, and getting to know people.<br/>Everyone's welcome here!");
-      break;
-    case 'cooperative':
-      info_playstyle.html("Surviving's more fun when you do it as a team.<br/>On this server we want to work together and do<br/>our best to tame the hostile world");
-      break;
-    case 'competitive':
-      info_playstyle.html("This server is the perfect arena for a fair fight.<br/>Everyone needs a place to prove who's the best<br/>at surviving, fighting, building, or... whatever.");
-      break;
-    case 'madness':
-      info_playstyle.html("Anything goes on this server! Forest will be<br/>burned, food will be nommed, and backs will be<br/>unceremoniously stabbed. Be prepared!");
-      break;
-  }
-
-});
+    switch(type){
+      case 'social':
+        info_playstyle.html("This server is a place for friendly chatter, a<br/>relaxed playstyle, and getting to know people.<br/>Everyone's welcome here!");
+        break;
+      case 'cooperative':
+        info_playstyle.html("Surviving's more fun when you do it as a team.<br/>On this server we want to work together and do<br/>our best to tame the hostile world");
+        break;
+      case 'competitive':
+        info_playstyle.html("This server is the perfect arena for a fair fight.<br/>Everyone needs a place to prove who's the best<br/>at surviving, fighting, building, or... whatever.");
+        break;
+      case 'madness':
+        info_playstyle.html("Anything goes on this server! Forest will be<br/>burned, food will be nommed, and backs will be<br/>unceremoniously stabbed. Be prepared!");
+        break;
+      }
+  })
+  .mouseleave(function () {
+    $('#info_playstyle').html('')
+  });
 
 // Show steam group options
 $('#server_visibility').change(function(){
@@ -64,6 +66,10 @@ $('#button_more_settings').on('click', function(){
 
 // Caves Tab
 
+$('#add_caves').on('click', function(){
+  $('#addCavesMsg').toggle();
+  $('#active_caves').toggle();
+});
 
 // Mods Tab
 

@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Setup DST Dedicated Server">
+    <meta name="author" content="Lucas Emanuel">
     <title>Don't Starve Together Server</title>
+    <meta name="keywords" content="don't, starve, together, dedicated, server, setup">
     <link href="dstserver.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
   </head>
@@ -19,7 +22,6 @@
     <div id="border1"></div>
     <div id="box">
       <div id="settings" class="tab">
-
         <div id="choice_play_style">
           <p>What's your server's playstyle?</p>
           <button id="social" type="button" class="play_style_buttons">
@@ -200,9 +202,30 @@
       </div>
     
       <div id="forest" class="tab">
+        <div class="option_background">Forest Presets
+          <button class="arrow-left"></button>
+          <span type="text" name="opt">Default</span>
+          <button class="arrow-right"></button>
+        </div>
+        <div class="bar"></div>
       </div>
 
       <div id="caves" class="tab">
+        <div id="addCavesMsg">
+          <p>Add Caves</p>
+          <p>This requires running multiple servers at the same time.<br>Is your computer up to the task?</p>
+          <button id="add_caves" class="lb">Add Caves</button>
+        </div>
+
+        <div id="active_caves">
+          <div class="option_background">Caves Presets
+            <button class="arrow-left"></button>
+            <span type="text" name="opt">The Caves</span>
+            <button class="arrow-right"></button>
+          </div>
+        </div>
+
+
       </div>
 
       <div id="mods" class="tab">
@@ -214,7 +237,7 @@
       <button id="loadServer" class="lb" onclick="load_server()">Load Folder</button>
       <button id="generateServer" class="lb" onclick="generate_server()">Generate Server</button>
     </div>
-    
+        
     <script src="dstserver.js"></script>
   </body>
 </html>

@@ -16,8 +16,6 @@
 body {
   color: #BBA979;
   background-image: url(./assets/background.png);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 #box {
@@ -47,46 +45,6 @@ body {
   background-image:url('./assets/bottom.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-}
-
-#steamgroupinfo{
-  display: none;
-}
-
-#choice_play_style{
-  margin: auto;
-  text-align: center;
-  align-content: center;
-}
-
-#choice_play_style p, #info_playstyle{
-  font-size: 40px;
-}
-
-.play_style_buttons{
-  padding: 0;
-  border: 0;
-  outline: 0;
-  padding: 0px;
-  background-color: transparent;
-}
-
-.play_style_buttons img:hover{
-  border-style: solid;
-  border-color: #BBA979;
-}
-
-.play_style_buttons img{
-  width: 200px;
-  height: 200px;
-}
-
-#after_play_style{
-  display: none;
-}
-
-#more_settings{
-  display: none;
 }
 
 /* Options Background */
@@ -276,6 +234,9 @@ body {
   transform: scaleX(-1);
 }
 
+.bar{
+}
+
 /* TABS */
 .tabs {
   margin: auto;
@@ -306,4 +267,61 @@ body {
   
 .tabs button.active {
   background-image: url(./assets/tab_active.png);
+}
+
+.tab {
+  display: none;
+}
+
+/* Settings Tab */
+
+#steamgroupinfo{
+  display: none;
+}
+
+#choice_play_style{
+  margin: auto;
+  text-align: center;
+  align-content: center;
+}
+
+#choice_play_style p, #info_playstyle{
+  font-size: 40px;
+}
+
+.play_style_buttons{
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+.play_style_buttons img:hover{
+  border-style: solid;
+  border-color: #BBA979;
+}
+
+.play_style_buttons img{
+  width: 200px;
+  height: 200px;
+}
+
+#after_play_style{
+  display: none;
+}
+
+#more_settings{
+  display: none;
+}
+
+/* Caves Tab */
+
+#addCavesMsg{
+  margin: auto;
+  text-align: center;
+  align-content: center;
+}
+
+#active_caves{
+  display: none;
 }
