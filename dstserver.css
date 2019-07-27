@@ -139,7 +139,7 @@ body {
 
 #manage{
   margin: auto;
-  width: 1000px;
+  width: 800px;
 }
 
 #loadServer{
@@ -273,6 +273,45 @@ body {
   display: none;
 }
 
+/* MINI option background */
+.mini_option_background{
+  background-color: red;
+
+  width: 400px;
+  height: 63px;
+
+  background:url(./assets/option_background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.mini_option_background span{
+}
+
+.mini_option_background .arrow-left{
+  float: middle;
+  background-size: 30px 55px;
+  width: 30px;
+  height: 55px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.mini_option_background .arrow-right{
+  float: right;
+  background-size: 30px 55px;
+  width: 30px;
+  height: 55px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.mini_option_background img{
+  width: 63px;
+  height: 63px;
+  float: left;
+}
+
 /* Settings Tab */
 
 #steamgroupinfo{
@@ -312,6 +351,11 @@ body {
 
 #more_settings{
   display: none;
+}
+
+/* Forest Tab */
+
+#forestSettings{
 }
 
 /* Caves Tab */
