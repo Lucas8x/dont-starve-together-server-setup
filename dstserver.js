@@ -129,497 +129,294 @@ $('.arrow-right').on('click', function(){
 
 });
 
-
-
-/* Possible json */
-
 const common_values = ['never', 'rare', 'default', 'often', 'always'];
 const season_values = ['noseason', 'veryshortseason', 'shortseason', 'default', 'longseason', 'verylongseason', 'random'];
 const speed_values = ['veryslow', 'slow', 'default', 'fast', 'veryfast'];
 
-
-function isTheLastOne(){
-};
-
-function isTheFirstOne(){
-};
-
-
-var myjson = {
-  'forestAllOptions': {
-    // MISC
-    'task_set': {
-      'title': 'Task Set',
-      'values': ['classic', 'default', 'cave_default'],
-      'actual': 'default'
-    },
-    'start_location': {
-      'title': 'Start Location',
-      'values': ['caves', 'default', 'plus', 'darkness'],
-      'actual': 'default'
-    },
-    'world_size': {
-      'title': 'World Size',
-      'values': ['small', 'medium', 'default', 'huge'],
-      'actual': 'default'
-    },
-    'branching': {
-      'title': 'Branching',
-      'values': ['never', 'least', 'default', 'most'],
-      'actual': 'default'
-    },
-    'specialevent': {
-      'title': 'Special Event',
-      'values': ['none', 'default', 'hallowed_nights', 'winters_feast', 'year_of_the_gobbler'],
-      'actual': 'default'
-    },
-    'autumn': {
-      'title': 'Autumn',
-      'values': season_values,
-      'actual': 'default'
-    },
-    'winter': {
-      'title': 'Winter',
-      'values': season_values,
-      'actual': 'default'
-    },
-    'spring': {
-      'title': 'Spring',
-      'values': season_values,
-      'actual': 'default'
-    },
-    'summer': {
-      'title': 'Summer',
-      'values': season_values,
-      'actual': 'default'
-    },
-    'season_start': {
-      'title': 'Season Start',
-      'values': ['default', 'winter', 'spring', 'summer', 'autumnorspring', 'winterorsummer', 'random'],
-      'actual': 'default'
-    },
-    'weather': {
-      'title': 'Weather',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'earthquakes': {
-      'title': 'Earthquakes',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'lightning': {
-      'title': 'Lightning',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'frograin': {
-      'title': 'Frograin',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'wildfires': {
-      'title': 'Wildfires',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'regrowth': {
-      'title': 'Regrowth',
-      'values': speed_values,
-      'actual': 'default'
-    },
-    'touchstone': {
-      'title': 'Touch Stone',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'boons': {
-      'title': 'Boons',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'cavelight': {
-      'title': 'Cave Light',
-      'values': speed_values,
-      'actual': 'default'
-    },
-    'disease_delay': {
-      'title': 'Disease Delay',
-      'values': ['none', 'random', 'long', 'default', 'short'],
-      'actual': 'default'
-    },
-    'prefabswaps_start': {
-      'title': 'Prefabswaps Start',
-      'values': ['classic', 'default', 'highly random'],
-      'actual': 'default'
-    },
-    'petrification': {
-      'title': 'Petrification',
-      'values': ['none', 'few', 'default', 'many', 'max'],
-      'actual': 'default'
-    },
-
-    // Resources
-    'flowers': {
-      'title': 'Flowers',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'grass': {
-      'title': 'Grass',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'sapling': {
-      'title': 'Sapling',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'marshbush': {
-      'title': 'Marshbush',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'tumbleweed': {
-      'title': 'Tumbleweed',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'reeds': {
-      'title': 'Reeds',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'trees': {
-      'title': 'Trees',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'flint': {
-      'title': 'Flint',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'rock': {
-      'title': 'Rock',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'rock_ice': {
-      'title': 'Rock ice',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'meteorspawner': {
-      'title': 'Meteor Spawner',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'meteorshowers': {
-      'title': 'Meteor Showers',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'mushtree': {
-      'title': 'Mushtree',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'fern': {
-      'title': 'Fern',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'flower_cave': {
-      'title': 'Flower Cave',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'wormlights': {
-      'title': 'Wormlights',
-      'values': common_values,
-      'actual': 'default'
-    },
-
-    // UNPREPARED
-    'berrybush': {
-      'title': 'Berrybush',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'carrot': {
-      'title': 'Carrot',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'mushroom': {
-      'title': 'Mushroom',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'cactus': {
-      'title': 'Cactus',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'banana': {
-      'title': 'Banana',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'lichen': {
-      'title': 'Lichen',
-      'values': common_values,
-      'actual': 'default'
-    },
-
-    // ANIMALS
-    'rabbits': {
-      'title': 'Rabbits',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'moles': {
-      'title': 'Moles',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'butterfly': {
-      'title': 'Butterfly',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'birds': {
-      'title': 'Birds',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'buzzard': {
-      'title': 'Buzzard',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'catcoon': {
-      'title': 'Catcoon',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'perd': {
-      'title': 'Perd',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'pigs': {
-      'title': 'Pigs',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'lightninggoat': {
-      'title': 'Lightninggoat',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'beefalo': {
-      'title': 'Beefalo',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'beefaloheat': {
-      'title': 'Beefaloheat',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'hunt': {
-      'title': 'Hunt',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'alternatehunt': {
-      'title': 'Alternatehunt',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'penguins': {
-      'title': 'Penguins',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'cave_ponds': {
-      'title': 'Cave_ponds',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'ponds': {
-      'title': 'Ponds',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'bees': {
-      'title': 'Bees',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'angrybees': {
-      'title': 'Angrybees',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'tallbirds': {
-      'title': 'Tallbirds',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'slurper': {
-      'title': 'Slurper',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'bunnymen': {
-      'title': 'Bunnymen',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'slurtles': {
-      'title': 'Slurtles',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'rocky': {
-      'title': 'Rocky',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'monkey': {
-      'title': 'Monkey',
-      'values': common_values,
-      'actual': 'default'
-    },
-
-    //MONSTERS
-    'spiders': {
-      'title': 'Spiders',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'cave_spiders': {
-      'title': 'Cave Spiders',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'hounds': {
-      'title': 'Hounds',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'houndmound': {
-      'title': 'Houndmound',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'merm': {
-      'title': 'Merm',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'tentacles': {
-      'title': 'Tentacles',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'chess': {
-      'title': 'Chess',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'lureplants': {
-      'title': 'Lureplants',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'walrus': {
-      'title': 'Walrus',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'liefs': {
-      'title': 'Liefs',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'deciduousmonster': {
-      'title': 'Deciduousmonster',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'krampus': {
-      'title': 'Krampus',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'bearger': {
-      'title': 'Bearger',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'deerclops': {
-      'title': 'Deerclops',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'goosemoose': {
-      'title': 'Goosemoose',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'dragonfly': {
-      'title': 'Dragonfly',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'antliontribute': {
-      'title': 'Antliontribute',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'bats': {
-      'title': 'Bats',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'fissure': {
-      'title': 'Fissure',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'wormattacks': {
-      'title': 'Wormattacks',
-      'values': common_values,
-      'actual': 'default'
-    },
-    'worms': {
-      'title': 'Worms',
-      'values': common_values,
-      'actual': 'default'
+const all_game_settings = {
+  'forest' : {
+    'Forest World' : { // MISC
+      'biomes' : {
+        'title': 'Biomes',
+        'values': ['together', 'classic']
+      },
+      'start_location' : {
+        'title': 'World Gen: Spawn Area',
+        'values': ['caves', 'default', 'plus', 'darkness']
+      },
+      'world_size' : {
+        'title': 'World Gen: Size',
+        'values': ['small', 'medium', 'default', 'huge']
+      },
+      'branching' : {
+        'title': 'World Gen: Branches',
+        'values': ['never', 'least', 'default', 'most']
+      },
+      'loop': {
+        'title': 'World Gen: Loops',
+        'values' : ['never', 'default', 'always']
+      },
+      'specialevent': {
+        'title': 'Special Event',
+        'values': ['none', 'default', 'hallowed_nights', 'winters_feast', 'year_of_the_gobbler']
+      },
+      'autumn': {
+        'title': 'Autumn',
+        'values': season_values
+      },
+      'winter': {
+        'title': 'Winter',
+        'values': season_values
+      },
+      'spring': {
+        'title': 'Spring',
+        'values': season_values
+      },
+      'summer': {
+        'title': 'Summer',
+        'values': season_values
+      },
+      'season_start': {
+        'title': 'Season Start',
+        'values': ['default', 'winter', 'spring', 'summer', 'autumnorspring', 'winterorsummer', 'random']
+      },
+      'weather': {
+        'title': 'Weather',
+        'values': common_values
+      },
+      'lightning': {
+        'title': 'Lightning',
+        'values': common_values
+      },
+      'frograin': {
+        'title': 'Frograin',
+        'values': common_values
+      },
+      'wildfires': {
+        'title': 'Wildfires',
+        'values': common_values
+      },
+      'regrowth': {
+        'title': 'Regrowth',
+        'values': speed_values
+      },
+      'touchstone': {
+        'title': 'Touch Stone',
+        'values': common_values
+      },
+      'boons': {
+        'title': 'Boons',
+        'values': common_values
+      },
+      'disease_delay': {
+        'title': 'Disease Delay',
+        'values': ['none', 'random', 'long', 'default', 'short']
+      },
+      'prefabswaps_start': {
+        'title': 'Prefabswaps Start',
+        'values': ['classic', 'default', 'highly random']
+      },
+      'petrification': {
+        'title': 'Petrification',
+        'values': ['none', 'few', 'default', 'many', 'max']
+      },
+    },
+    'Forest Resources' : { // RESOURCES
+      'flowers': 'Flowers, Evil Flowers',
+      'grass': 'Grass',
+      'sapling': 'Sapling',
+      'marshbush': 'Marshbush',
+      'tumbleweed': 'Tumbleweed',
+      'reeds':'Reeds',
+      'trees': 'Trees',
+      'flint': 'Flint',
+      'rock': 'Rock',
+      'rock_ice': 'Rock ice',
+      'meteorspawner': 'Meteor Spawner',
+      'meteorshowers': 'Meteor Showers'
+    },
+    'Forest Food' : { // UNPREPARED
+      'berrybush': 'Berrybush',
+      'carrot': 'Carrot',
+      'mushroom': 'Mushroom',
+      'cactus': 'Cactus'
+    },
+    'Forest Animals' : { // ANIMALS
+      'rabbits': 'Rabbits',
+      'moles': 'Moles',
+      'butterfly': 'Butterfly',
+      'birds': 'Birds',
+      'buzzard': 'Buzzard',
+      'catcoon': 'Catcoon',
+      'perd': 'Perd',
+      'pigs': 'Pigs',
+      'lightninggoat': 'Lightnin Goat',
+      'beefalo': 'Beefalo',
+      'beefaloheat': 'Beefaloheat',
+      'hunt': 'Hunts',
+      'alternatehunt': 'Hunt Surprises',
+      'penguins': 'Penguins',
+      'ponds': 'Ponds',
+      'bees': 'Bees',
+      'angrybees': 'Angrybees',
+      'tallbirds': 'Tallbirds',
+      'bunnymen': 'Bunnymen'
+    },
+    'Forest Monsters' : { //MONSTERS
+      'spiders': 'Spiders',
+      'hounds': 'Hound Attack',
+      'houndmound': 'Houndmound',
+      'merm': 'Merms',
+      'tentacles': 'Tentacles',
+      'chess': 'Chess',
+      'lureplants': 'Lureplants',
+      'walrus': 'Walrus',
+      'liefs': 'Liefs',
+      'deciduousmonster': 'Deciduousmonster',
+      'krampus': 'Krampii',
+      'bearger': 'Bearger',
+      'deerclops': 'Deerclops',
+      'goosemoose': 'Goosemoose',
+      'dragonfly': 'Dragonfly',
+      'antliontribute': 'Antlion Tribute'
     }
   },
-
-  'cavesAllOptions': {
+  'caves' : {
+    'Cave World' : {
+      'biomes' : {
+        'title' : 'Biomes',
+        'values' : ['underground']
+      },
+      'start_location' : {
+        'title' : 'World Gen: Spawn Area',
+        'values' : ['caves']
+      },
+      'world_size' : {
+        'title' : 'World Gen: Size',
+        'values' : ['small', 'medium', 'default', 'huge']
+      },
+      'branching' : {
+        'title' : 'World Gen: Branches',
+        'values' : ['never', 'least', 'default', 'most']
+      },
+      'loop': {
+        'title' : 'World Gen: Loops',
+        'values' : ['never', 'default', 'always']
+      }
+    },
+    'Cave Resources' : {
+      'grass' : 'Grass',
+      'sapling' : 'Sapling',
+      'marshbush' : 'Spiky Bush',
+      'reeds' :'Reeds',
+      'trees' : 'Trees (All)',
+      'flint' : 'Flint',
+      'rock' : 'Rock',
+      'rock_ice' : 'Rock ice',
+      'mushtree' : 'Mushtree',
+      'fern' : 'Cave Ferns',
+      'flower_cave' : 'Light Flowers',
+      'wormlight' : 'Glow Berries'
+    },
+    'Cave Food' : {
+      'berrybush': 'Berrybush',
+      'mushroom': 'Mushroom',
+      'banana' : 'Cave Bananas',
+      'lichen' : 'Lichen'
+    },
+    'Cave Animals' : {
+      'cave_ponds' : 'Ponds',
+      'slurper' : 'Slurpers',
+      'bunnymen' : 'Bunnymen',
+      'slurtles' : 'Slurtles and Snurtles',
+      'rocky' : 'Rocky',
+      'monkey' : 'Monkeys'
+    },
+    'Cave Monsters' : {
+      'spiders' : 'Spiders',
+      'tentacles' : 'Tentacles',
+      'chess' : 'Clockworks',
+      'liefs' : 'Treeguards',
+      'bats' : 'Bats',
+      'fissure' : 'Nightmare Fissures',
+      'wormattacks' : 'Cave Worm Attacks',
+      'worms' : 'Cave Worms'
+    }
   }
-
 };
 
-var toAdd = [];
+var big_data = [];
 
-for(let item in myjson['forestAllOptions']){
-  toAdd += `
-    <div class="mini_option_background">
-      <button class="arrow-left"></button>
-      <button class="arrow-right"></button>
-      <img src="assets/icons/tempFrame.jpg">
-      <span type="text">${myjson['forestAllOptions'][item]['title']}</span>
-      <span type="text" name="${myjson['forestAllOptions'][item]['actual']}">Default</span>
-    </div><br>
-    `;
+class worldSettingeItem {
+  constructor(game_id, title, possible_values, actual_value, world, category){
+    this.game_id = game_id;
+    this.title = title;
+    this.possible_values = possible_values;
+    this.actual_value = actual_value;
+    this.world = world;
+    this.category = category;
+  };
+
+  changeActual(new_value){
+    if(this.possible_values.includes(new_value)){
+      this.actual_value = new_value;
+    }
+  };
 }
 
-document.getElementById("forestSettings").innerHTML = toAdd;
+// Create settings item object
+for(let world in all_game_settings){ // world = forest or caves
+  for(let category in all_game_settings[world]){ // MISC, RESOURCES, UNPREPARED, ANIMALS, MONSTERS
+    for(let item in all_game_settings[world][category]){ // settting item
+      if(['Forest World', 'Cave World'].includes(category)){
+        big_data.push(new worldSettingeItem(item, all_game_settings[world][category][item]['title'], all_game_settings[world][category][item]['values'], 'default', world, category));
+      } else {
+        big_data.push(new worldSettingeItem(item, all_game_settings[world][category][item], common_values, 'default', world, category));
+      }
+    }
+  }
+};
+
+// HTML items
+var forest_html = [];
+var caves_html = [];
+
+function buildHtmlItem(game_id, title, actual_value){
+  return `<div class="mini_option_background">
+  <button class="arrow-left"></button>
+  <button class="arrow-right"></button>
+  <img src="assets/icons/${game_id}.jpg">
+  <span type="text">${title}</span>
+  <span type="text" name="${actual_value}">${actual_value}</span>
+  </div><br>`
+};
+
+// Add settings items to html
+for(let world in all_game_settings){
+  switch(world){
+    case 'forest':
+      for(let category in all_game_settings[world]){
+        forest_html += `<div class="option_background">${category}</div>`
+        for(let obj in big_data){
+          if(big_data[obj].category === category && big_data[obj].world === world){
+            forest_html += buildHtmlItem(big_data[obj].game_id,big_data[obj].title, big_data[obj].actual_value);
+          }
+        }
+      }
+      break;
+    case 'caves':
+      for(let category in all_game_settings[world]){
+        caves_html += `<div class="option_background">${category}</div>`
+        for(let obj in big_data){
+          if(big_data[obj].category === category && big_data[obj].world === world){
+            caves_html += buildHtmlItem(big_data[obj].game_id, big_data[obj].title, big_data[obj].actual_value);
+          }
+        }
+      }
+      break;
+  }
+};
+
+document.getElementById("forestSettings").innerHTML = forest_html;
+document.getElementById("cavesSettings").innerHTML = caves_html;
+
