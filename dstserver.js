@@ -180,6 +180,10 @@ const all_game_settings = {
         'title': 'Season Start',
         'values': ['default', 'winter', 'spring', 'summer', 'autumnorspring', 'winterorsummer', 'random']
       },
+      'day': {
+        'title': 'Day Type',
+        'values': ['default', 'longday', 'longdusk', 'longnight', 'noday', 'nodusk', 'nonight', 'onlyday', 'onlydusk', 'onlynight']
+      },
       'weather': {
         'title': 'Weather',
         'values': common_values
@@ -382,36 +386,42 @@ var forest_html = [];
 var caves_html = [];
 
 function buildHtmlItem(game_id, title, actual_value){
-  return `<div class="mini_option_background">
-  <button class="arrow-left"></button>
-  <button class="arrow-right"></button>
-  <img src="assets/icons/${game_id}.jpg">
-  <span type="text">${title}</span>
-  <span type="text" name="${actual_value}">${actual_value}</span>
-  </div><br>`
+  return (
+    `<li>
+      <img src="assets/icons/${game_id}.jpg">
+      <footer>
+        <button class="arrow-left"></button>
+        <button class="arrow-right"></button>
+        <span type="text">${title}</span><br>
+        <span type="text" name="${actual_value}">${actual_value}</span>
+      </footer>
+    </li>`
+  );
 };
 
-// Add settings items to html
+// Add settings itens to html
 for(let world in all_game_settings){
   switch(world){
     case 'forest':
       for(let category in all_game_settings[world]){
-        forest_html += `<div class="option_background">${category}</div>`
+        forest_html += `<div class="option_background">${category}</div><ul>`
         for(let obj in big_data){
           if(big_data[obj].category === category && big_data[obj].world === world){
             forest_html += buildHtmlItem(big_data[obj].game_id,big_data[obj].title, big_data[obj].actual_value);
           }
         }
+        forest_html += '</ul>';
       }
       break;
     case 'caves':
       for(let category in all_game_settings[world]){
-        caves_html += `<div class="option_background">${category}</div>`
+        caves_html += `<div class="option_background">${category}</div><ul>`
         for(let obj in big_data){
           if(big_data[obj].category === category && big_data[obj].world === world){
             caves_html += buildHtmlItem(big_data[obj].game_id, big_data[obj].title, big_data[obj].actual_value);
           }
         }
+        caves_html += '</ul>';
       }
       break;
   }

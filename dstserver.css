@@ -28,7 +28,7 @@ body {
 }
 
 /* Top border */
-#border1{
+#border1 {
   margin: auto;
   width: 1020px;
   height: 39px;
@@ -38,7 +38,7 @@ body {
   margin-top: -1.2em;
 }
 /* Bottom border */
-#border2{
+#border2 {
   margin: auto;
   width: 1020px;
   height: 39px;
@@ -48,7 +48,7 @@ body {
 }
 
 /* Options Background */
-.option_background{
+.option_background {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +61,7 @@ body {
   height: 50px;
 }
 
-.tiny_option_background{
+.tiny_option_background {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +75,7 @@ body {
 }
 
 /* INPUTS */
-* input{
+* input {
   border:0;
   outline:0;
   text-align: center;
@@ -85,7 +85,7 @@ body {
   background-size: 100% 100%;
 }
 
-* input:hover{
+* input:hover {
   border:0;
   outline:0;
   text-align: center;
@@ -95,7 +95,7 @@ body {
   background-size: 100% 100%;
 }
 
-* input:active{
+* input:active {
   border:0;
   outline:0;
   text-align: center;
@@ -107,7 +107,7 @@ body {
 
 /* Long Buttons*/
 
-.lb{
+.lb {
   border:0;
   outline:0;
   background:url(./assets/lb_tiny_normal.png);
@@ -117,7 +117,7 @@ body {
   height: 30px;
 }
 
-.lb:hover{
+.lb:hover {
   border:0;
   outline:0;
   background:url(./assets/lb_tiny_hover.png);
@@ -127,7 +127,7 @@ body {
   height: 40px;
 }
 
-.lb:active{
+.lb:active {
   border:0;
   outline:0;
   background:url(./assets/lb_tiny_clicked.png);
@@ -137,20 +137,20 @@ body {
   height: 41px;
 }
 
-#manage{
+#manage {
   margin: auto;
   width: 800px;
 }
 
-#loadServer{
+#loadServer {
 }
 
-#generateServer{
+#generateServer {
 }
 
 /* Switch Arrows*/
 
-.arrow-left{
+.arrow-left {
   border:0;
   outline:0;
   background:url(./assets/arrow_normal.png);
@@ -160,7 +160,7 @@ body {
   height: 45px;
 }
 
-.arrow-left:hover{
+.arrow-left:hover {
   border:0;
   outline:0;
   background:url(./assets/arrow_hover.png);
@@ -170,7 +170,7 @@ body {
   height: 45px;
 }
 
-.arrow-left:active{
+.arrow-left:active {
   border:0;
   outline:0;
   background:url(./assets/arrow_clicked.png);
@@ -180,7 +180,7 @@ body {
   height: 45px;
 }
 
-.arrow-left:disabled{
+.arrow-left:disabled {
   border:0;
   outline:0;
   background:url(./assets/arrow_inactive.png);
@@ -190,7 +190,7 @@ body {
   height: 45px;
 }
 
-.arrow-right{
+.arrow-right {
   border:0;
   outline:0;
   background:url(./assets/arrow_normal.png);
@@ -201,7 +201,7 @@ body {
   transform: scaleX(-1);
 }
 
-.arrow-right:hover{
+.arrow-right:hover {
   border:0;
   outline:0;
   background:url(./assets/arrow_hover.png);
@@ -212,7 +212,7 @@ body {
   transform: scaleX(-1);
 }
 
-.arrow-right:active{
+.arrow-right:active {
   border:0;
   outline:0;
   background:url(./assets/arrow_clicked.png);
@@ -223,7 +223,7 @@ body {
   transform: scaleX(-1);
 }
 
-.arrow-right:disabled{
+.arrow-right:disabled {
   border:0;
   outline:0;
   background:url(./assets/arrow_inactive.png);
@@ -274,21 +274,16 @@ body {
 }
 
 /* MINI option background */
-.mini_option_background{
+.mini_option_background {
   background-color: red;
-
   width: 400px;
   height: 63px;
-
   background:url(./assets/option_background.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
-.mini_option_background span{
-}
-
-.mini_option_background .arrow-left{
+.mini_option_background .arrow-left {
   float: middle;
   background-size: 30px 55px;
   width: 30px;
@@ -297,7 +292,7 @@ body {
   margin-top: 5px;
 }
 
-.mini_option_background .arrow-right{
+.mini_option_background .arrow-right {
   float: right;
   background-size: 30px 55px;
   width: 30px;
@@ -306,7 +301,7 @@ body {
   margin-top: 5px;
 }
 
-.mini_option_background img{
+.mini_option_background img {
   width: 63px;
   height: 63px;
   float: left;
@@ -314,58 +309,100 @@ body {
 
 /* Settings Tab */
 
-#steamgroupinfo{
+#steamgroupinfo {
   display: none;
 }
 
-#choice_play_style{
+#choice_play_style {
   margin: auto;
   text-align: center;
   align-content: center;
 }
 
-#choice_play_style p, #info_playstyle{
+#choice_play_style p, #info_playstyle {
   font-size: 40px;
 }
 
-.play_style_buttons{
+.play_style_buttons {
   padding: 0;
   border: 0;
   outline: 0;
   background-color: transparent;
 }
 
-.play_style_buttons img:hover{
+.play_style_buttons img:hover {
   border-style: solid;
   border-color: #BBA979;
 }
 
-.play_style_buttons img{
+.play_style_buttons img {
   width: 200px;
   height: 200px;
 }
 
-#after_play_style{
+#after_play_style {
   display: none;
 }
 
-#more_settings{
+#more_settings {
   display: none;
 }
 
-/* Forest Tab */
+/* World Settings */
+.worldSettings {
+  text-align: center;
+  overflow: hidden;
+}
 
-#forestSettings{
+.worldSettings ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.worldSettings ul li {
+  background:url(./assets/option_background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 400px;
+  height: 63px;
+  display: flex;
+}
+
+.worldSettings ul li footer {
+  flex: auto;
+  margin-top: 5px;
+}
+
+.worldSettings ul li footer span:first-of-type {
+  color: white;
+}
+
+.worldSettings ul li footer .arrow-left{
+  margin-top: 5px;
+  margin-left: 10px;
+  float: left;
+}
+
+.worldSettings ul li footer .arrow-right{
+  margin-top: 5px;
+  margin-right: 10px;
+  float: right;
+}
+
+.worldSettings ul li img {
+  width: 63px;
+  height: 63px;
 }
 
 /* Caves Tab */
-
-#addCavesMsg{
+#addCavesMsg {
   margin: auto;
   text-align: center;
   align-content: center;
 }
 
-#active_caves{
+#active_caves {
   display: none;
 }
