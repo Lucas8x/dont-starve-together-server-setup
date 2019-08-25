@@ -1,3 +1,5 @@
+$(document).ready(function (){
+
 // Tabs
 $('.tabButton').on('click', function(){
   $('.tab').hide(); // Hide all tab
@@ -9,10 +11,8 @@ $('.tabButton').on('click', function(){
 // Settings Tab
 
 // Show playstyle selector when ready
-$(document).ready(function (){
-  $('#settings').show(); // Show settings content
-  $('.tabButton').first().addClass('active') // Active settings button
-});
+$('#settings').show(); // Show settings content
+$('.tabButton').first().addClass('active') // Active settings button
 
 $('.play_style_buttons, #play_style_str').on('click', function(){
   cluster_intention = $(this).attr('id')
@@ -61,7 +61,6 @@ $('#button_more_settings').on('click', function(){
 });
 
 // Caves Tab
-
 $('#add_caves').on('click', function(){
   $('#addCavesMsg').toggle();
   $('#active_caves').toggle();
@@ -84,49 +83,68 @@ const switchs = [
 ];
 
 // Prev Next Arrows
-$('.arrow-left').on('click', function(){
-  current_tab = $('.tabButton.active').attr('value');
-  switch(current_tab){
-    case 'settings':
-      let $span = $(this).closest('div').find('span[type="text"]');
-      let status = $span.text().toLowerCase();
-    
-      check:
-      for (let x = 0, length = switchs.length; x < length; x++){
-        for (let y = 0, length = switchs[x].length; y < length; y++ ){
-          if(switchs[x][y] === status){
-            $span.text(switchs[x][y-1]);
+
+$(function(){
+  $('.arrow-left').click(function(){
+    let current_tab = $('.tabButton.active').attr('value');
+    switch(current_tab) {
+      case 'settings':
+        let $span = $(this).closest('div').find('span[type="text"]');
+        let actual_status = $span.text().toLowerCase();
+      
+        check:
+        for (let x = 0, length = switchs.length; x < length; x++){
+          if(switchs[x].indexOf(actual_status) > 0 ){
+            let new_status = switchs[x][switchs[x].indexOf(actual_status)-1];
+            $span.text(new_status);
             break check;
+          } else {
           }
         }
-      }
-      break;
-    case 'forest':
-      console.log("forest");
-      break;
-    case 'caves':
-      console.log("caves");
-      break;
-    case 'mods':
-      console.log("mods");
-      break;
-  }
+        break;
+      case 'forest':
+        console.log("forest");
+        break;
+      case 'caves':
+        console.log("caves");
+        break;
+      case 'mods':
+        console.log("mods");
+        break;
+    }
+  });
 });
 
-$('.arrow-right').on('click', function(){
-  let $span = $(this).closest('div').find('span[type="text"]');
-  let status = $span.text().toLowerCase();
+$(function(){
+  $('.arrow-right').click(function(){
+    let current_tab = $('.tabButton.active').attr('value');
+    switch(current_tab) {
+      case 'settings':
+        let $span = $(this).closest('div').find('span[type="text"]');
+        let actual_status = $span.text().toLowerCase();
 
-  check:
-  for (let x = 0, length = switchs.length; x < length; x++){
-    for (let y = 0, length = switchs[x].length; y < length; y++ ){
-      if(switchs[x][y] === status){
-        $span.text(switchs[x][y+1]);
-        break check;
-      }
+        check:
+        for (let x = 0, length = switchs.length; x < length; x++){
+          if(switchs[x].includes(actual_status) && switchs[x].indexOf(actual_status) < switchs[x].length-1 ){
+            console.log("Encontrado");
+            let new_status = switchs[x][switchs[x].indexOf(actual_status)+1];
+            $span.text(new_status);
+            break check;
+          } else {
+          }
+        }
+        break;
+      case 'forest':
+        console.log("forest");
+        break;
+      case 'caves':
+        console.log("caves");
+        break;
+      case 'mods':
+        console.log("mods");
+        break;
     }
-  }
-
+  });
 });
 
 const common_values = ['never', 'rare', 'default', 'often', 'always'];
@@ -430,3 +448,4 @@ for(let world in all_game_settings){
 document.getElementById("forestSettings").innerHTML = forest_html;
 document.getElementById("cavesSettings").innerHTML = caves_html;
 
+});

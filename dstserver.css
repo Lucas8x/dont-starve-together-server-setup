@@ -16,12 +16,15 @@
 body {
   color: #BBA979;
   background-image: url(./assets/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #box {
   background-color: #392C1B;
   width: 1000px;
   min-height: 600px;
+  max-height: 600px;
   margin: auto;
   opacity: 0.8;
   overflow: auto;
@@ -271,40 +274,6 @@ body {
 
 .tab {
   display: none;
-}
-
-/* MINI option background */
-.mini_option_background {
-  background-color: red;
-  width: 400px;
-  height: 63px;
-  background:url(./assets/option_background.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-.mini_option_background .arrow-left {
-  float: middle;
-  background-size: 30px 55px;
-  width: 30px;
-  height: 55px;
-  margin-left: 5px;
-  margin-top: 5px;
-}
-
-.mini_option_background .arrow-right {
-  float: right;
-  background-size: 30px 55px;
-  width: 30px;
-  height: 55px;
-  margin-right: 10px;
-  margin-top: 5px;
-}
-
-.mini_option_background img {
-  width: 63px;
-  height: 63px;
-  float: left;
 }
 
 /* Settings Tab */
