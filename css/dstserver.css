@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: normal;
   color: #BBA979;
-  src: url(./assets/belisa_plumilla.ttf) format("truetype");
+  src: url(../assets/belisa_plumilla.ttf) format("truetype");
 }
 
 * {
@@ -15,7 +15,7 @@
 
 body {
   color: #BBA979;
-  background-image: url(./assets/background.png);
+  background-image: url(../assets/background.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -28,14 +28,44 @@ body {
   margin: auto;
   opacity: 0.8;
   overflow: auto;
+  /*text-align: center;*/
 }
+
+/* Scrollbar*//*
+::-webkit-scrollbar {
+}
+
+::-webkit-scrollbar-track {
+  background-image: url(../assets/bar.png);
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: url(../assets//scroll_thumb.png);
+  background-repeat: no-repeat;
+  width: 50px;
+  margin-right: -50px;
+}
+ 
+::-webkit-scrollbar-button:end:increment {
+  background-image: url(../assets/scroll_arrow.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+ 
+::-webkit-scrollbar-button:start:decrement {
+  background-image: url(../assets/scroll_arrow.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}*/
 
 /* Top border */
 #border1 {
   margin: auto;
   width: 1020px;
   height: 39px;
-  background-image:url('./assets/top.png');
+  background-image:url('../assets/top.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   margin-top: -1.2em;
@@ -45,7 +75,7 @@ body {
   margin: auto;
   width: 1020px;
   height: 39px;
-  background-image:url('./assets/bottom.png');
+  background-image:url('../assets/bottom.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -57,7 +87,7 @@ body {
   align-items: center;
   opacity: 0.7;
 
-  background:url(./assets/option_background.png);
+  background:url(../assets/option_background.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 90% 100%;
@@ -70,7 +100,7 @@ body {
   align-items: center;
   opacity: 0.7;
 
-  background:url(./assets/option_background.png);
+  background:url(../assets/option_background.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 70% 100%;
@@ -82,7 +112,7 @@ body {
   border:0;
   outline:0;
   text-align: center;
-  background: url(./assets/input_normal.png);
+  background: url(../assets/input_normal.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -92,7 +122,7 @@ body {
   border:0;
   outline:0;
   text-align: center;
-  background: url(./assets/input_hover.png);
+  background: url(../assets/input_hover.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -102,18 +132,38 @@ body {
   border:0;
   outline:0;
   text-align: center;
-  background: url(./assets/input_active.png);
+  background: url(../assets/input_active.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
 }
+
+/*input[type="radio"] {
+  border:0;
+  background:url(../assets/radio.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px 40px;
+  width: 20px;
+  height: 20px;
+}
+
+input[type="radio"]:checked {
+  background:url(../assets/radio_checked.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  border:0;
+  background-size: 30px 40px;
+  width: 20px;
+  height: 20px;
+}*/
 
 /* Long Buttons*/
 
 .lb {
   border:0;
   outline:0;
-  background:url(./assets/lb_tiny_normal.png);
+  background:url(../assets/lb_tiny_normal.png);
   background-repeat: no-repeat;
   background-size: 170px 30px;
   width: 170px;
@@ -123,7 +173,7 @@ body {
 .lb:hover {
   border:0;
   outline:0;
-  background:url(./assets/lb_tiny_hover.png);
+  background:url(../assets/lb_tiny_hover.png);
   background-repeat: no-repeat;
   background-size: 170px 40px;
   width: 170px;
@@ -133,7 +183,7 @@ body {
 .lb:active {
   border:0;
   outline:0;
-  background:url(./assets/lb_tiny_clicked.png);
+  background:url(../assets/lb_tiny_clicked.png);
   background-repeat: no-repeat;
   background-size: 170px 41px;
   width: 170px;
@@ -141,6 +191,7 @@ body {
 }
 
 #manage {
+  display: none;
   margin: auto;
   width: 800px;
 }
@@ -156,7 +207,7 @@ body {
 .arrow-left {
   border:0;
   outline:0;
-  background:url(./assets/arrow_normal.png);
+  background:url(../assets/arrow_normal.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -166,7 +217,7 @@ body {
 .arrow-left:hover {
   border:0;
   outline:0;
-  background:url(./assets/arrow_hover.png);
+  background:url(../assets/arrow_hover.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -176,7 +227,7 @@ body {
 .arrow-left:active {
   border:0;
   outline:0;
-  background:url(./assets/arrow_clicked.png);
+  background:url(../assets/arrow_clicked.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -186,7 +237,7 @@ body {
 .arrow-left:disabled {
   border:0;
   outline:0;
-  background:url(./assets/arrow_inactive.png);
+  background:url(../assets/arrow_inactive.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -196,7 +247,7 @@ body {
 .arrow-right {
   border:0;
   outline:0;
-  background:url(./assets/arrow_normal.png);
+  background:url(../assets/arrow_normal.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -207,7 +258,7 @@ body {
 .arrow-right:hover {
   border:0;
   outline:0;
-  background:url(./assets/arrow_hover.png);
+  background:url(../assets/arrow_hover.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -218,7 +269,7 @@ body {
 .arrow-right:active {
   border:0;
   outline:0;
-  background:url(./assets/arrow_clicked.png);
+  background:url(../assets/arrow_clicked.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -229,7 +280,7 @@ body {
 .arrow-right:disabled {
   border:0;
   outline:0;
-  background:url(./assets/arrow_inactive.png);
+  background:url(../assets/arrow_inactive.png);
   background-repeat: no-repeat;
   background-size: 25px 45px;
   width: 25px;
@@ -238,6 +289,8 @@ body {
 }
 
 .bar{
+  /*background-image: url('../assets/bar.png');
+  background-repeat: no-repeat;*/
 }
 
 /* TABS */
@@ -257,7 +310,7 @@ body {
   height: 56px;
   text-align: center;
   font-size: 40px;
-  background-image: url(./assets/tab_inactive.png);
+  background-image: url(../assets/tab_inactive.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -265,16 +318,53 @@ body {
 }
   
 .tabs button:hover {
-  background-image: url(./assets/tab_hover.png), url(./assets/tab_inactive.png);
+  background-image: url(../assets/tab_hover.png), url(../assets/tab_inactive.png);
 }
   
 .tabs button.active {
-  background-image: url(./assets/tab_active.png);
+  background-image: url(../assets/tab_active.png);
 }
 
 .tab {
   display: none;
 }
+
+/* MINI option background */
+/*.mini_option_background {
+  background-color: red;
+  width: 400px;
+  height: 63px;
+  background:url(../assets/option_background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.mini_option_background span {
+}
+
+.mini_option_background .arrow-left {
+  float: middle;
+  background-size: 30px 55px;
+  width: 30px;
+  height: 55px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.mini_option_background .arrow-right {
+  float: right;
+  background-size: 30px 55px;
+  width: 30px;
+  height: 55px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.mini_option_background img {
+  width: 63px;
+  height: 63px;
+  float: left;
+}*/
 
 /* Settings Tab */
 
@@ -331,7 +421,7 @@ body {
 }
 
 .worldSettings ul li {
-  background:url(./assets/option_background.png);
+  background:url(../assets/option_background.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 400px;

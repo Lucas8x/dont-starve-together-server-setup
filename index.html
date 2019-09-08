@@ -7,8 +7,8 @@
     <meta name="author" content="Lucas Emanuel">
     <title>Don't Starve Together Server</title>
     <meta name="keywords" content="don't, starve, together, dedicated, server, setup">
-    <link href="dstserver.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <link href="css/dstserver.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   </head>
   
   <body>
@@ -242,10 +242,12 @@
     <div id="border2"></div>
 
     <div id="manage">
-      <button id="loadServer" class="lb" onclick="load_server()">Load Folder</button>
-      <button id="generateServer" class="lb" onclick="generate_server()">Generate Server</button>
+      <button id="loadServer" class="lb">Load Folder</button>
+      <button id="generateServer" class="lb">Generate Server</button>
     </div>
         
-    <script src="dstserver.js"></script>
+    <script src="js/dstserver.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/jszip.min.js"></script>
   </body>
 </html>
