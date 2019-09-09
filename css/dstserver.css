@@ -438,6 +438,10 @@ input[type="radio"]:checked {
   color: white;
 }
 
+.worldSettings ul li footer span:last-of-type {
+  text-transform: capitalize;
+}
+
 .worldSettings ul li footer .arrow-left{
   margin-top: 5px;
   margin-left: 10px;

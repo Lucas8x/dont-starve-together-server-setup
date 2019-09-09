@@ -132,6 +132,10 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
     ['survival', 'endless', 'wilderness']
   ];
 
+  get_from_world_settings_object_list = (id) => {
+    return world_settings_object_list.filter(setting => setting.game_id == id)[0];
+  };
+
   // Prev Next Arrows
 
   $(function() {
@@ -170,7 +174,10 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
             }
             break;
         case 'forest':
-          console.log("forest");
+          let $span = $(this).parent().find('span[name]');
+          let id = $span.attr('name');
+          let new_value = get_from_world_settings_object_list(id).previous();
+          $span.text(new_value);
           break;
         case 'caves':
           console.log("caves");
@@ -183,7 +190,7 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
   });
 
   $(function() {
-    $('.arrow-right').click(function(){
+    $('.arrow-right').click(function() {
       let current_tab = $('.tabButton.active').attr('value');
       switch(current_tab) {
         case 'settings':
@@ -218,7 +225,10 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
           }
           break;
         case 'forest':
-          console.log("forest");
+          let $span = $(this).parent().find('span[name]');
+          let id = $span.attr('name');
+          let new_value = get_from_world_settings_object_list(id).next();
+          $span.text(new_value);
           break;
         case 'caves':
           console.log("caves");
@@ -468,6 +478,21 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
       }
     };
 
+    previous() {
+      if(this.possible_values.indexOf(this.actual_value) > 0) {
+        let new_value = this.possible_values[this.possible_values.indexOf(this.actual_value)-1];
+        this.changeActual(new_value);
+        return new_value;
+      }
+    };
+
+    next() {
+      if(this.possible_values.indexOf(this.actual_value) < this.possible_values.length-1) {
+        let new_value = this.possible_values[this.possible_values.indexOf(this.actual_value)+1];
+        this.changeActual(new_value);
+        return new_value;
+      }
+    };
   };
 
   // Create settings item object
@@ -495,7 +520,7 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
           <button class="arrow-left"></button>
           <button class="arrow-right"></button>
           <span type="text">${title}</span><br>
-          <span type="text" name="${actual_value}">${actual_value}</span>
+          <span type="text" name="${game_id}">${actual_value}</span>
         </footer>
       </li>`
     );
