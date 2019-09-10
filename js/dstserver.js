@@ -49,12 +49,12 @@ $(document).ready(function () {
       $('#info_playstyle').html('')
     });
 
-  // Show steam group options
+  // Show steam group settings
   $('#server_visibility').change(function() {
     if($('input[value="steamgroup"]').is(":checked")){
       $('#steamgroupinfo').toggle();
     } else {
-      $('#steamgroupinfo').toggle();
+      $('#steamgroupinfo').hide();
     }
   });
 
@@ -132,8 +132,8 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
     ['survival', 'endless', 'wilderness']
   ];
 
-  get_from_world_settings_object_list = (id) => {
-    return world_settings_object_list.filter(setting => setting.game_id == id)[0];
+  get_from_world_settings_object_list = (id, world) => {
+    return world_settings_object_list.filter(setting => setting.game_id === id && setting.world === world)[0];
   };
 
   // Prev Next Arrows
@@ -141,101 +141,100 @@ max_snapshots = ${$("input[name=max_snapshots]").val()}
   $(function() {
     $('.arrow-left').click(function(){
       let current_tab = $('.tabButton.active').attr('value');
-      switch(current_tab) {
-        case 'settings':
-            let clicked_div = $(this).closest('div').attr('id');
-            if(clicked_div == 'game_mode') {
-              let $span = $(this).closest('div').find('span[type="text"]');
-              let actual_status = $span.text().toLowerCase();
-              if(switchs[2].indexOf(actual_status) > 0 ) {
-                let new_status = switchs[2][switchs[2].indexOf(actual_status)-1];
-                $span.text(new_status);
-              }
-            } else if(clicked_div == 'server_mode') {
-              let $span = $(this).closest('div').find('span[type="text"]');
-              let actual_status = $span.text().toLowerCase();
-              if(switchs[1].indexOf(actual_status) > 0 ) {
-                let new_status = switchs[1][switchs[1].indexOf(actual_status)-1];
-                $span.text(new_status);
-              }
-            } else if(clicked_div == 'cluster_language') {
-              // a
-            } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
-              let $span = $(this).closest('div').find('span[type="text"]');
-              let actual_status = $span.text().toLowerCase();
-              if(actual_status == 'true')
-                $span.text('false');
-              else
-                $span.text('true');
-            } else {
-              let $input = $(this).closest('div').find('input');
-              let actual_value = parseInt($input.val());
-              $input.val(actual_value-1);
-            }
-            break;
-        case 'forest':
+      if(current_tab === 'settings') {
+        let clicked_div = $(this).closest('div').attr('id');
+        if(clicked_div === 'game_mode') {
+          let $span = $(this).closest('div').find('span[type="text"]');
+          let actual_status = $span.text().toLowerCase();
+          if(switchs[2].indexOf(actual_status) > 0 ) {
+            let new_status = switchs[2][switchs[2].indexOf(actual_status)-1];
+            $span.text(new_status);
+          }
+        } else if(clicked_div === 'server_mode') {
+          let $span = $(this).closest('div').find('span[type="text"]');
+          let actual_status = $span.text().toLowerCase();
+          if(switchs[1].indexOf(actual_status) > 0 ) {
+            let new_status = switchs[1][switchs[1].indexOf(actual_status)-1];
+            $span.text(new_status);
+          }
+        } else if(clicked_div === 'cluster_language') {
+          // a
+        } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
+          let $span = $(this).closest('div').find('span[type="text"]');
+          let actual_status = $span.text().toLowerCase();
+          if(actual_status === 'true')
+            $span.text('false');
+          else
+            $span.text('true');
+        } else {
+          let $input = $(this).closest('div').find('input');
+          let actual_value = parseInt($input.val());
+          $input.val(actual_value-1);
+          }
+        }
+        else if(current_tab === 'forest') {
           let $span = $(this).parent().find('span[name]');
           let id = $span.attr('name');
-          let new_value = get_from_world_settings_object_list(id).previous();
+          let new_value = get_from_world_settings_object_list(id, 'forest').previous();
           $span.text(new_value);
-          break;
-        case 'caves':
-          console.log("caves");
-          break;
-        case 'mods':
+        }
+        else if(current_tab === 'caves') {
+          let $span = $(this).parent().find('span[name]');
+          let id = $span.attr('name');
+          let new_value = get_from_world_settings_object_list(id, 'caves').previous();
+          $span.text(new_value);
+        }
+        else if(current_tab === 'mods') {
           console.log("mods");
-          break;
-      }
+        }
     });
   });
 
   $(function() {
     $('.arrow-right').click(function() {
       let current_tab = $('.tabButton.active').attr('value');
-      switch(current_tab) {
-        case 'settings':
-          let clicked_div = $(this).closest('div').attr('id');
-          if(clicked_div == 'game_mode') {
-            let $span = $(this).closest('div').find('span[type="text"]');
-            let actual_status = $span.text().toLowerCase();
-            if(switchs[2].indexOf(actual_status) < switchs[2].length-1 ) {
-              let new_status = switchs[2][switchs[2].indexOf(actual_status)+1];
-              $span.text(new_status);
-            }
-          } else if(clicked_div == 'server_mode') {
-            let $span = $(this).closest('div').find('span[type="text"]');
-            let actual_status = $span.text().toLowerCase();
-            if(switchs[1].indexOf(actual_status) < switchs[1].length-1 ) {
-              let new_status = switchs[1][switchs[1].indexOf(actual_status)+1];
-              $span.text(new_status);
-            }
-          } else if(clicked_div == 'cluster_language') {
+      if(current_tab === 'settings') {
+        let clicked_div = $(this).closest('div').attr('id');
+        if(clicked_div === 'game_mode') {
+          let $span = $(this).closest('div').find('span[type="text"]');
+          let actual_status = $span.text().toLowerCase();
+          if(switchs[2].indexOf(actual_status) < switchs[2].length-1 ) {
+            let new_status = switchs[2][switchs[2].indexOf(actual_status)+1];
+            $span.text(new_status);
+          }
+        } else if(clicked_div === 'server_mode') {
+          let $span = $(this).closest('div').find('span[type="text"]');
+          let actual_status = $span.text().toLowerCase();
+          if(switchs[1].indexOf(actual_status) < switchs[1].length-1 ) {
+            let new_status = switchs[1][switchs[1].indexOf(actual_status)+1];
+            $span.text(new_status);
+          }
+        } else if(clicked_div === 'cluster_language') {
             // a
-          } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
-            let $span = $(this).closest('div').find('span[type="text"]');
-            let actual_status = $span.text().toLowerCase();
-            if(actual_status == 'true')
-              $span.text('false');
-            else
-              $span.text('true');
-          } else {
+        } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
+          let $span = $(this).closest('div').find('span[type="text"]');
+          let actual_status = $span.text().toLowerCase();
+          if(actual_status === 'true')
+            $span.text('false');
+          else
+            $span.text('true');
+        } else {
             let $input = $(this).closest('div').find('input');
             let actual_value = parseInt($input.val());
             $input.val(actual_value+1);
           }
-          break;
-        case 'forest':
-          let $span = $(this).parent().find('span[name]');
-          let id = $span.attr('name');
-          let new_value = get_from_world_settings_object_list(id).next();
-          $span.text(new_value);
-          break;
-        case 'caves':
-          console.log("caves");
-          break;
-        case 'mods':
-          console.log("mods");
-          break;
+      } else if(current_tab === 'forest') {
+        let $span = $(this).parent().find('span[name]');
+        let id = $span.attr('name');
+        let new_value = get_from_world_settings_object_list(id, 'forest').next();
+        $span.text(new_value);
+      } else if(current_tab === 'caves') {
+        let $span = $(this).parent().find('span[name]');
+        let id = $span.attr('name');
+        let new_value = get_from_world_settings_object_list(id, 'caves').next();
+        $span.text(new_value);
+      } else if(current_tab === 'mods') {
+        console.log("mods");
       }
     });
   });
