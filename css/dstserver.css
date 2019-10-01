@@ -288,11 +288,6 @@ input[type="radio"]:checked {
   transform: scaleX(-1);
 }
 
-.bar{
-  /*background-image: url('../assets/bar.png');
-  background-repeat: no-repeat;*/
-}
-
 /* TABS */
 .tabs {
   margin: auto;
@@ -405,6 +400,36 @@ input[type="radio"]:checked {
 
 #more_settings {
   display: none;
+}
+
+.help-btn {
+  border:0;
+  outline:0;
+  background:url(../assets/square_button_normal.png);
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  width: 25px;
+  height: 25px;
+}
+
+.help-btn:hover {
+  border:0;
+  outline:0;
+  background:url(../assets/square_button_hover.png);
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  width: 25px;
+  height: 25px;
+}
+
+.help-btn:active {
+  border:0;
+  outline:0;
+  background:url(../assets/square_button_clicked.png);
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  width: 25px;
+  height: 25px;
 }
 
 /* World Settings */

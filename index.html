@@ -58,22 +58,20 @@
 
           <div id="server_visibility" class="option_background">
             <input type="radio" name="serverVisibility" value="public" checked>Public
-            <input type="radio" name="serverVisibility" value="friendsonly">Friends Only
-            <input type="radio" name="serverVisibility" value="localonly">Local Only
             <input type="radio" name="serverVisibility" value="steamgroup">Steam Group
           </div>
           <div id="steamgroupinfo">
             <br> <!-- [STEAM] -->
             <div class="tiny_option_background">Group ID:
-              <input type="text" name="groupid"></div>
+              <input type="text" name="steam_group_id"></div>
             <div class="tiny_option_background">Members Only:
               <button class="arrow-left"></button>
-              <span type="text" name="opt">False</span>
+              <span type="text" name="members_only">False</span>
               <button class="arrow-right"></button>
             </div>
             <div class="tiny_option_background">Auto Group Admins:
               <button class="arrow-left"></button>
-              <span type="text" name="opt">False</span>
+              <span type="text" name="steam_group_admins">False</span>
               <button class="arrow-right"></button>
             </div>
           </div>
@@ -84,6 +82,7 @@
             <button class="arrow-left"></button>
             <span type="text" name="game_mode">Survival</span>
             <button class="arrow-right"></button>
+            <button class="help-btn"></button>
           </div>
           <br>
 
