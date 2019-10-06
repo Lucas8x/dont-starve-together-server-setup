@@ -194,6 +194,7 @@ input[type="radio"]:checked {
   display: none;
   margin: auto;
   width: 800px;
+  height: 50px;
 }
 
 #loadServer {
