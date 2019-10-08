@@ -44,24 +44,20 @@
             <span>Server Playstyle: </span>
             <button id='play_style_str' class="lb"></button>
           </div>
-          <br>
 
           <div id="server_name" class="option_background">
-            <span>Name: </span><input name="cluster_name">
+            <span>Name: </span><input name="cluster_name" size="40">
           </div>
-          <br>
 
           <div id="description" class="option_background">
-            <span>Description: </span><input name="cluster_description">
+            <span>Description: </span><input name="cluster_description" size="40">
           </div>
-          <br>
 
           <div id="server_visibility" class="option_background">
             <input type="radio" name="serverVisibility" value="public" checked>Public
             <input type="radio" name="serverVisibility" value="steamgroup">Steam Group
           </div>
-          <div id="steamgroupinfo">
-            <br> <!-- [STEAM] -->
+          <div id="steamgroupinfo"> <!-- [STEAM] -->
             <div class="tiny_option_background">Group ID:
               <input type="text" name="steam_group_id"></div>
             <div class="tiny_option_background">Members Only:
@@ -75,7 +71,6 @@
               <button class="arrow-right"></button>
             </div>
           </div>
-          <br>
 
           <div id="game_mode" class="option_background">
             <span>Game Mode: </span>
@@ -84,7 +79,6 @@
             <button class="arrow-right"></button>
             <button class="help-btn"></button>
           </div>
-          <br>
 
           <div id="pvp" class="option_background">
             <span>PvP: </span>
@@ -92,20 +86,18 @@
             <span type="text" name="pvp">False</span>
             <button class="arrow-right"></button>
           </div>
-          <br>
 
           <div id="players" class="option_background">
             <span>Players: </span>
             <button class="arrow-left"></button>
-            <input type="number" name="max_players" value="6" min="1">
+            <input type="number" name="max_players" value="6" min="1" size="1">
             <button class="arrow-right"></button>
+            <button class="help-btn"></button>
           </div>
-          <br>
 
           <div id="password" class="option_background">
-            <span>Password: </span><input name="password">
+            <span>Password: </span><input name="password" size="40">
           </div>
-          <br>
 
           <div id="server_mode" class="option_background">
             <span>Server Mode: </span>
@@ -113,82 +105,78 @@
             <span type="text" name="server_mode">Online</span>
             <button class="arrow-right"></button>
           </div>
-          <br>
 
           <div id="cluster_token" class="option_background">
             <span>Cluster Token: </span><input name="cluster_token" size="80">
           </div>
-          <br>
 
           <div class="option_background">
             <button id="button_more_settings" class="lb">More Settings</button>
           </div>
-          <div id="more_settings">
-            <br> <!-- [MISC] -->
+          <div id="more_settings"> <!-- [MISC] -->
             <div id="max_snapshots" class="tiny_option_background">
               <span>Max Snapshots: </span>
               <button class="arrow-left"></button>
-              <input type="number" name="max_snapshots" value="6" min="0">
+              <input type="number" name="max_snapshots" value="6" min="0" size="1">
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="console" class="tiny_option_background">
               <span>Console: </span>
               <button class="arrow-left"></button>
-              <span type="text" name="console_enabled">true</span>
+              <span type="text" name="console_enabled">True</span>
               <button class="arrow-right"></button>
             </div>
-            
-            <br> <!-- [NETWORK] -->
+            <!-- [NETWORK] -->
             <div id="offline_cluster" class="tiny_option_background">
               <span>Offline Cluster: </span>
               <button class="arrow-left"></button>
-              <span type="text" name="offline_cluster">false</span>
+              <span type="text" name="offline_cluster">False</span>
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="tick_rate" class="tiny_option_background">
               <span>Tick Rate: </span>
               <button class="arrow-left"></button>
               <input type="number" name="tick_rate" value="15" min="0">
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="whitelist_slots" class="tiny_option_background">
               <span>Whitelist Slots: </span>
               <button class="arrow-left"></button>
               <input type="number" name="whitelist_slots" value="0" min="0">
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="lan_only" class="tiny_option_background">
               <span>Lan Only: </span>
               <button class="arrow-left"></button>
-              <span type="text" name="lan_only_cluster">false</span>
+              <span type="text" name="lan_only_cluster">False</span>
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="autosaver_enabled" class="tiny_option_background">
               <span>Auto Saver: </span>
               <button class="arrow-left"></button>
-              <span type="text" name="autosaver_enabled">true</span>
+              <span type="text" name="autosaver_enabled">True</span>
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="pause_when_empty" class="tiny_option_background">
               <span>Pause when Empty: </span>
               <button class="arrow-left"></button>
-              <span type="text" name="pause_when_empty">false</span>
+              <span type="text" name="pause_when_empty">False</span>
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="vote_enabled" class="tiny_option_background">
               <span>Vote Kick Enabled: </span>
               <button class="arrow-left"></button>
-              <span type="text" name="enable_vote_kick">true</span>
+              <span type="text" name="enable_vote_kick">True</span>
               <button class="arrow-right"></button>
             </div>
-            <br>
+
             <div id="cluster_language" class="tiny_option_background">
               <span>Cluster Language </span>
               <button class="arrow-left"></button>
@@ -196,7 +184,7 @@
               <button class="arrow-right"></button>
             </div>
           </div>
-          <br>
+
         </div>
       </div>
     

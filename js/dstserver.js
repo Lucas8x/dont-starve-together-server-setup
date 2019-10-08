@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+  String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  }
+
   var zip = new JSZip();
 
   // Tabs
@@ -17,7 +21,7 @@ $(document).ready(function () {
 
   $('.play_style_buttons, #play_style_str').on('click', function() {
     cluster_intention = $(this).attr('id')
-    $('#play_style_str').html(cluster_intention)
+    $('#play_style_str').html(cluster_intention.capitalize())
     $('#choice_play_style').toggle() // Show and hide play style selection
     $('#after_play_style').toggle() // Show and hide settings options
     $('#manage').toggle() // Show and hide bottom buttons
@@ -39,15 +43,16 @@ $(document).ready(function () {
         info_playstyle.html("Anything goes on this server! Forest will be<br/>burned, food will be nommed, and backs will be<br/>unceremoniously stabbed. Be prepared!");
     })
     .mouseleave(function () {
-      $('#info_playstyle').html('')
+      $('#info_playstyle').html('');
     });
 
   // Show steam group settings
   $('#server_visibility').change(function() {
-    if($('input[value="steamgroup"]').is(":checked"))
+    if($('input[value="steamgroup"]').is(":checked")) {
       $('#steamgroupinfo').toggle();
-    else
+    } else {
       $('#steamgroupinfo').hide();
+    }
   });
 
   // More Settings Button
@@ -61,6 +66,10 @@ $(document).ready(function () {
     $('#active_caves').toggle();
   });
 
+  // Help Button
+  $('help-btn').on('click', function() {
+  });
+
   // Mods Tab
 
   // Others
@@ -68,9 +77,9 @@ $(document).ready(function () {
   
   checkIfCavesEnabled = () => $('#active_caves').css('display') == 'block' ? true : false;
 
-  $('#loadServer').on('click', function() {
+  /*$('#loadServer').on('click', function() {
     console.log("loading server");
-  });
+  });*/
 
   $('#generateServer').on('click', function() {
     let cluster_ini = (`
@@ -84,7 +93,7 @@ $(document).ready(function () {
       cluster_name = ${$("input[name=cluster_name]").val()}
       cluster_description = ${$("input[name=cluster_description]").val()}
       cluster_password = ${$("input[name=password]").val()}
-      cluster_intention = ${cluster_intention}
+      cluster_intention = ${cluster_intention.toLowerCase()}
       lan_only_cluster = ${$("span[name=lan_only_cluster]").text().toLowerCase()}
       offline_cluster = ${$("span[name=offline_cluster]").text().toLowerCase()}
       cluster_language = ${$("input[name=cluster_language]").val()}
@@ -145,9 +154,9 @@ $(document).ready(function () {
       } else if(world_settings_object_list[item].world == 'caves') {
         caves_leveldataoverride += `${world_settings_object_list[item].returnString()},\n`
       }
-    };
+    }
     
-    //let run_server = ``;
+    let run_server = ``;
 
     zip.file("cluster.ini", cluster_ini);
     zip.file("cluster_token.txt", cluster_token);
@@ -177,9 +186,10 @@ $(document).ready(function () {
     ['survival', 'endless', 'wilderness']
   ];
 
-  get_from_world_settings_object_list = (id, world) => {
-    return world_settings_object_list.filter(setting => setting.game_id === id && setting.world === world)[0];
-  };
+  // Create cluster settings item object
+  for(let item in cluster_game_settings) {
+    cluster_settings_object_list.push(new clusterSettingItem(item, cluster_game_settings[item]['values'], cluster_game_settings[item]['values'][cluster_game_settings[item]['initial']]))
+  }
 
   // Left/Previous Arrow
   $(function() {
@@ -192,24 +202,25 @@ $(document).ready(function () {
           let actual_status = $span.text().toLowerCase();
           if(switchs[2].indexOf(actual_status) > 0 ) {
             let new_status = switchs[2][switchs[2].indexOf(actual_status)-1];
-            $span.text(new_status);
+            $span.text(new_status.capitalize());
           }
         } else if(clicked_div === 'server_mode') {
           let $span = $(this).closest('div').find('span[type="text"]');
           let actual_status = $span.text().toLowerCase();
           if(switchs[1].indexOf(actual_status) > 0 ) {
             let new_status = switchs[1][switchs[1].indexOf(actual_status)-1];
-            $span.text(new_status);
+            $span.text(new_status.capitalize());
           }
         } else if(clicked_div === 'cluster_language') {
           // a
         } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
           let $span = $(this).closest('div').find('span[type="text"]');
           let actual_status = $span.text().toLowerCase();
-          if(actual_status === 'true')
-            $span.text('false');
-          else
-            $span.text('true');
+          if(actual_status === 'true') {
+            $span.text('False');
+          } else {
+            $span.text('True');
+          }
         } else {
           let $input = $(this).closest('div').find('input');
           let actual_value = parseInt($input.val());
@@ -219,13 +230,13 @@ $(document).ready(function () {
         else if(current_tab === 'forest') {
           let $span = $(this).parent().find('span[name]');
           let id = $span.attr('name');
-          let new_value = get_from_world_settings_object_list(id, 'forest').previous();
+          let new_value = getFromWorldSettingsObjectList(id, 'forest').previous();
           $span.text(new_value);
         }
         else if(current_tab === 'caves') {
           let $span = $(this).parent().find('span[name]');
           let id = $span.attr('name');
-          let new_value = get_from_world_settings_object_list(id, 'caves').previous();
+          let new_value = getFromWorldSettingsObjectList(id, 'caves').previous();
           $span.text(new_value);
         }
         else if(current_tab === 'mods') {
@@ -244,24 +255,25 @@ $(document).ready(function () {
           let actual_status = $span.text().toLowerCase();
           if(switchs[2].indexOf(actual_status) < switchs[2].length-1 ) {
             let new_status = switchs[2][switchs[2].indexOf(actual_status)+1];
-            $span.text(new_status);
+            $span.text(new_status.capitalize());
           }
         } else if(clicked_div === 'server_mode') {
           let $span = $(this).closest('div').find('span[type="text"]');
           let actual_status = $span.text().toLowerCase();
           if(switchs[1].indexOf(actual_status) < switchs[1].length-1 ) {
             let new_status = switchs[1][switchs[1].indexOf(actual_status)+1];
-            $span.text(new_status);
+            $span.text(new_status.capitalize());
           }
         } else if(clicked_div === 'cluster_language') {
             // a
         } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
           let $span = $(this).closest('div').find('span[type="text"]');
           let actual_status = $span.text().toLowerCase();
-          if(actual_status === 'true')
-            $span.text('false');
-          else
-            $span.text('true');
+          if(actual_status === 'true') {
+            $span.text('False');
+          } else {
+            $span.text('True');
+          }
         } else {
             let $input = $(this).closest('div').find('input');
             let actual_value = parseInt($input.val());
@@ -270,12 +282,12 @@ $(document).ready(function () {
       } else if(current_tab === 'forest') {
         let $span = $(this).parent().find('span[name]');
         let id = $span.attr('name');
-        let new_value = get_from_world_settings_object_list(id, 'forest').next();
+        let new_value = getFromWorldSettingsObjectList(id, 'forest').next();
         $span.text(new_value);
       } else if(current_tab === 'caves') {
         let $span = $(this).parent().find('span[name]');
         let id = $span.attr('name');
-        let new_value = get_from_world_settings_object_list(id, 'caves').next();
+        let new_value = getFromWorldSettingsObjectList(id, 'caves').next();
         $span.text(new_value);
       } else if(current_tab === 'mods') {
         console.log("mods");
@@ -291,16 +303,17 @@ $(document).ready(function () {
     'forest' : {
       'Forest World' : { // MISC
         'biomes' : {
-          'title': 'Biomes',
-          'values': ['together', 'classic']
+          'title' : 'Biomes',
+          'values' : ['together', 'classic'],
+          'default' : 1
         },
         'start_location' : {
           'title': 'World Gen: Spawn Area',
-          'values': ['plus', 'darkness', 'default']
+          'values': ['plus', 'darkness', 'default'],
         },
         'world_size' : {
           'title': 'World Gen: Size',
-          'values': ['small', 'medium', 'default', 'huge']
+          'values': ['small', 'medium', 'default', 'huge'],
         },
         'branching' : {
           'title': 'World Gen: Branches',
@@ -535,43 +548,47 @@ $(document).ready(function () {
     }
   };
 
-  var world_settings_object_list = [];
-
-  class worldSettingeItem {
-    constructor(game_id, title, possible_values, actual_value, world, category){
+  class worldSettingItem {
+    constructor(game_id, title, possible_values, actual_value, world, category) {
       this.game_id = game_id;
       this.title = title;
       this.possible_values = possible_values;
       this.actual_value = actual_value;
       this.world = world;
       this.category = category;
-    };
+    }
 
     changeActual(new_value) {
       if(this.possible_values.includes(new_value)) {
         this.actual_value = new_value;
       }
-    };
+    }
 
     previous() {
       if(this.possible_values.indexOf(this.actual_value) > 0) {
-        let new_value = this.possible_values[this.possible_values.indexOf(this.actual_value)-1];
-        this.changeActual(new_value);
-        return new_value;
+        let previous_value = this.possible_values[this.possible_values.indexOf(this.actual_value)-1];
+        this.changeActual(previous_value);
+        return previous_value;
       }
-    };
+    }
 
     next() {
       if(this.possible_values.indexOf(this.actual_value) < this.possible_values.length-1) {
-        let new_value = this.possible_values[this.possible_values.indexOf(this.actual_value)+1];
-        this.changeActual(new_value);
-        return new_value;
+        let next_value = this.possible_values[this.possible_values.indexOf(this.actual_value)+1];
+        this.changeActual(next_value);
+        return next_value;
       }
-    };
+    }
 
     returnString() {
       return `${this.game_id} = "${this.actual_value}"`;
-    };
+    }
+  }
+
+  var world_settings_object_list = [];
+
+  getFromWorldSettingsObjectList = (id, world) => {
+    return world_settings_object_list.filter(setting => setting.game_id === id && setting.world === world)[0];
   };
 
   // Create settings item object
@@ -579,13 +596,13 @@ $(document).ready(function () {
     for(let category in world_game_settings[world]) { // MISC, RESOURCES, UNPREPARED, ANIMALS, MONSTERS
       for(let item in world_game_settings[world][category]) { // settting item
         if(['Forest World', 'Cave World'].includes(category)) {
-          world_settings_object_list.push(new worldSettingeItem(item, world_game_settings[world][category][item]['title'], world_game_settings[world][category][item]['values'], 'default', world, category));
+          world_settings_object_list.push(new worldSettingItem(item, world_game_settings[world][category][item]['title'], world_game_settings[world][category][item]['values'], 'default', world, category));
         } else {
-          world_settings_object_list.push(new worldSettingeItem(item, world_game_settings[world][category][item], common_values, 'default', world, category));
+          world_settings_object_list.push(new worldSettingItem(item, world_game_settings[world][category][item], common_values, 'default', world, category));
         }
       }
     }
-  };
+  }
 
   // HTML items
   var forest_html = [];
