@@ -186,11 +186,6 @@ $(document).ready(function () {
     ['survival', 'endless', 'wilderness']
   ];
 
-  // Create cluster settings item object
-  for(let item in cluster_game_settings) {
-    cluster_settings_object_list.push(new clusterSettingItem(item, cluster_game_settings[item]['values'], cluster_game_settings[item]['values'][cluster_game_settings[item]['initial']]))
-  }
-
   // Left/Previous Arrow
   $(function() {
     $('.arrow-left').click(function(){
