@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
+  var zip = new JSZip();
+
   String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
   }
-
-  var zip = new JSZip();
 
   // Tabs
   $('.tabButton').on('click', function() {
@@ -20,11 +20,11 @@ $(document).ready(function () {
   $('.tabButton').first().addClass('active') // Active settings button
 
   $('.play_style_buttons, #play_style_str').on('click', function() {
-    cluster_intention = $(this).attr('id')
-    $('#play_style_str').html(cluster_intention.capitalize())
-    $('#choice_play_style').toggle() // Show and hide play style selection
-    $('#after_play_style').toggle() // Show and hide settings options
-    $('#manage').toggle() // Show and hide bottom buttons
+    cluster_intention = $(this).attr('id');
+    $('#play_style_str').html(cluster_intention.capitalize());
+    $('#choice_play_style').toggle(); // Show and hide play style selection
+    $('#after_play_style').toggle(); // Show and hide settings options
+    $('#manage').toggle(); // Show and hide bottom buttons
   });
 
   // Show Play Style info when mouse over
@@ -70,108 +70,34 @@ $(document).ready(function () {
   $('help-btn').on('click', function() {
   });
 
-  // Mods Tab
-
-  // Others
-  checkSteamGroup = () => $('input[value="steamgroup"]').is(":checked") ? true : false;
-  
-  checkIfCavesEnabled = () => $('#active_caves').css('display') == 'block' ? true : false;
+  // Cluster List
+  $('.clusterItem').on('click', function() {
+    changeCluster($(this).attr('value'));
+    $('.clusterItem').removeClass('active');
+    $(this).addClass('active');
+  });
 
   /*$('#loadServer').on('click', function() {
     console.log("loading server");
   });*/
 
   $('#generateServer').on('click', function() {
-    let cluster_ini = (`
-      [GAMEPLAY]
-      game_mode = ${$("span[name=game_mode]").text().toLowerCase()}
-      max_players = ${$("input[name=max_players]").val()}
-      pvp = ${$("span[name=pvp]").text().toLowerCase()}
-      pause_when_empty = ${$("span[name=pause_when_empty]").text().toLowerCase()}
-
-      [NETWORK]
-      cluster_name = ${$("input[name=cluster_name]").val()}
-      cluster_description = ${$("input[name=cluster_description]").val()}
-      cluster_password = ${$("input[name=password]").val()}
-      cluster_intention = ${cluster_intention.toLowerCase()}
-      lan_only_cluster = ${$("span[name=lan_only_cluster]").text().toLowerCase()}
-      offline_cluster = ${$("span[name=offline_cluster]").text().toLowerCase()}
-      cluster_language = ${$("input[name=cluster_language]").val()}
-      whitelist_slots = ${$("input[name=whitelist_slots]").val()}
-      autosaver_enabled = ${$("span[name=autosaver_enabled]").text().toLowerCase()}
-      enable_vote_kick = ${$("span[name=enable_vote_kick]").text().toLowerCase()}
-      tick_rate = ${$("input[name=tick_rate]").val()}
-
-      [MISC]
-      console_enabled = ${$("span[name=console_enabled]").text().toLowerCase()}
-      max_snapshots = ${$("input[name=max_snapshots]").val()}
-
-      [STEAM]
-      steam_group_only = ${checkSteamGroup()}
-      steam_group_id = ${$("input[name=steam_group_id]").val()}
-      steam_group_admins = ${$("span[name=steam_group_admins]").text().toLowerCase()}
-
-      [SHARD]
-      shard_enabled = ${checkIfCavesEnabled()}
-      bind_ip = 127.0.0.1
-      master_ip = 127.0.0.1
-      master_port = 10888
-      cluster_key = defaultPass`);
-
-    let mater_server_ini = (`
-      [NETWORK]
-      server_port = 10999
-      
-      [SHARD]
-      is_master = true
-      
-      [ACCOUNT]
-      encode_user_path = true`);
-
-    let caves_server_ini = (`
-      [NETWORK]
-      server_port = 10998
-      
-      [SHARD]
-      is_master = false
-      name = Caves
-      
-      [ACCOUNT]
-      encode_user_path = true
-      
-      [STEAM]
-      master_server_port = 27017
-      authentication_port = 8767`);
-
-    let cluster_token = $("input[name=cluster_token]").val();
-    
-    let master_leveldataoverride = "";
-    let caves_leveldataoverride = "";
-
-    for(let item in world_settings_object_list) {
-      if(world_settings_object_list[item].world == 'forest') {
-        master_leveldataoverride += `${world_settings_object_list[item].returnString()},\n`
-      } else if(world_settings_object_list[item].world == 'caves') {
-        caves_leveldataoverride += `${world_settings_object_list[item].returnString()},\n`
-      }
-    }
-    
     let run_server = ``;
 
-    zip.file("cluster.ini", cluster_ini);
-    zip.file("cluster_token.txt", cluster_token);
+    zip.file("cluster.ini", generateClusterIni());
+    zip.file("cluster_token.txt", generateClusterToken());
     zip.file("run_server.bat", run_server);
     
     // Master Folder
     let Master = zip.folder("Master");
-    Master.file("leveldataoverride.lua", `return {\n${master_leveldataoverride}}`);
-    Master.file("server.ini", mater_server_ini);
+    Master.file("leveldataoverride.lua", generateMasterLevelDataOverride());
+    Master.file("server.ini", generateMasterServerIni());
     Master.file("modoverrides.lua");
 
     // Caves Folder
     let Caves = zip.folder("Caves");
-    Caves.file("leveldataoverride.lua", `return {\n${caves_leveldataoverride}}`);
-    Caves.file("server.ini", caves_server_ini);
+    Caves.file("leveldataoverride.lua", generateCavesLevelDataOverride());
+    Caves.file("server.ini", generateCavesServerIni());
     Caves.file("modoverrides.lua");
 
     zip.generateAsync({type: "blob"})
@@ -180,63 +106,39 @@ $(document).ready(function () {
       });
   });
 
-  const switchs = [
-    ['false', 'true'],
-    ['online', 'offline'],
-    ['survival', 'endless', 'wilderness']
-  ];
-
   // Left/Previous Arrow
   $(function() {
     $('.arrow-left').click(function(){
       let current_tab = $('.tabButton.active').attr('value');
       if(current_tab === 'settings') {
         let clicked_div = $(this).closest('div').attr('id');
-        if(clicked_div === 'game_mode') {
+        if(!numericInputs.includes(clicked_div)) {
           let $span = $(this).closest('div').find('span[type="text"]');
-          let actual_status = $span.text().toLowerCase();
-          if(switchs[2].indexOf(actual_status) > 0 ) {
-            let new_status = switchs[2][switchs[2].indexOf(actual_status)-1];
+          let new_status = getFromClusterSettingsObjectList(clicked_div).previous();
+          if(new_status != undefined) {
             $span.text(new_status.capitalize());
-          }
-        } else if(clicked_div === 'server_mode') {
-          let $span = $(this).closest('div').find('span[type="text"]');
-          let actual_status = $span.text().toLowerCase();
-          if(switchs[1].indexOf(actual_status) > 0 ) {
-            let new_status = switchs[1][switchs[1].indexOf(actual_status)-1];
-            $span.text(new_status.capitalize());
-          }
-        } else if(clicked_div === 'cluster_language') {
-          // a
-        } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
-          let $span = $(this).closest('div').find('span[type="text"]');
-          let actual_status = $span.text().toLowerCase();
-          if(actual_status === 'true') {
-            $span.text('False');
-          } else {
-            $span.text('True');
           }
         } else {
           let $input = $(this).closest('div').find('input');
           let actual_value = parseInt($input.val());
           $input.val(actual_value-1);
-          }
         }
-        else if(current_tab === 'forest') {
-          let $span = $(this).parent().find('span[name]');
-          let id = $span.attr('name');
-          let new_value = getFromWorldSettingsObjectList(id, 'forest').previous();
-          $span.text(new_value);
-        }
-        else if(current_tab === 'caves') {
-          let $span = $(this).parent().find('span[name]');
-          let id = $span.attr('name');
-          let new_value = getFromWorldSettingsObjectList(id, 'caves').previous();
-          $span.text(new_value);
-        }
-        else if(current_tab === 'mods') {
-          console.log("mods");
-        }
+      }
+      else if(current_tab === 'forest') {
+        let $span = $(this).parent().find('span[name]');
+        let id = $span.attr('name');
+        let new_value = getFromWorldSettingsObjectList(id, 'forest').previous();
+        $span.text(new_value);
+      }
+      else if(current_tab === 'caves') {
+        let $span = $(this).parent().find('span[name]');
+        let id = $span.attr('name');
+        let new_value = getFromWorldSettingsObjectList(id, 'caves').previous();
+        $span.text(new_value);
+      }
+      else if(current_tab === 'mods') {
+        console.log("mods");
+      }
     });
   });
   // Right/Next Arrow
@@ -245,35 +147,17 @@ $(document).ready(function () {
       let current_tab = $('.tabButton.active').attr('value');
       if(current_tab === 'settings') {
         let clicked_div = $(this).closest('div').attr('id');
-        if(clicked_div === 'game_mode') {
+        if(!numericInputs.includes(clicked_div)) {
           let $span = $(this).closest('div').find('span[type="text"]');
-          let actual_status = $span.text().toLowerCase();
-          if(switchs[2].indexOf(actual_status) < switchs[2].length-1 ) {
-            let new_status = switchs[2][switchs[2].indexOf(actual_status)+1];
+          let new_status = getFromClusterSettingsObjectList(clicked_div).next();
+          if(new_status != undefined) {
             $span.text(new_status.capitalize());
-          }
-        } else if(clicked_div === 'server_mode') {
-          let $span = $(this).closest('div').find('span[type="text"]');
-          let actual_status = $span.text().toLowerCase();
-          if(switchs[1].indexOf(actual_status) < switchs[1].length-1 ) {
-            let new_status = switchs[1][switchs[1].indexOf(actual_status)+1];
-            $span.text(new_status.capitalize());
-          }
-        } else if(clicked_div === 'cluster_language') {
-            // a
-        } else if(['pvp', 'console', 'offline_cluster', 'lan_only', 'autosaver_enabled', 'pause_when_empty', 'vote_enabled'].includes(clicked_div)) {
-          let $span = $(this).closest('div').find('span[type="text"]');
-          let actual_status = $span.text().toLowerCase();
-          if(actual_status === 'true') {
-            $span.text('False');
-          } else {
-            $span.text('True');
           }
         } else {
-            let $input = $(this).closest('div').find('input');
-            let actual_value = parseInt($input.val());
-            $input.val(actual_value+1);
-          }
+          let $input = $(this).closest('div').find('input');
+          let actual_value = parseInt($input.val());
+          $input.val(actual_value+1);
+        }
       } else if(current_tab === 'forest') {
         let $span = $(this).parent().find('span[name]');
         let id = $span.attr('name');
@@ -290,10 +174,57 @@ $(document).ready(function () {
     });
   });
 
+  var cluster_settings_object_list = [];
+  var world_settings_object_list = [];
+  var forest_html = [];
+  var caves_html = [];
+  const numericInputs = ['players', 'max_snapshots', 'tick_rate', 'whitelist_slots'];
   const common_values = ['never', 'rare', 'default', 'often', 'always'];
   const season_values = ['noseason', 'veryshortseason', 'shortseason', 'default', 'longseason', 'verylongseason', 'random'];
   const speed_values = ['veryslow', 'slow', 'default', 'fast', 'veryfast'];
 
+  const cluster_game_settings = {
+    'game_mode' : {
+      'values' : ['survival', 'endless', 'wilderness'],
+      'initial' : 0
+    },
+    'pvp' : {
+      'values' : ['false', 'true'],
+      'initial' : 0
+    },
+    'server_mode' : {
+      'values' : ['online', 'offline'],
+      'initial' : 0
+    },
+    'console_enabled' : {
+      'values' : ['false', 'true'],
+      'initial' : 1
+    },
+    'autosaver_enabled' : {
+      'values' : ['false', 'true'],
+      'initial' : 1
+    },
+    'pause_when_empty' : {
+      'values' : ['false', 'true'],
+      'initial' : 0
+    },
+    'enable_vote_kick' : {
+      'values' : ['false', 'true'],
+      'initial' : 1
+    },
+    'cluster_language' : {
+      'values' : ['en'],
+      'initial' : 0
+    },
+    'offline_cluster' : {
+      'values' : ['false', 'true'],
+      'initial' : 0
+    },
+    'lan_only_cluster' : {
+      'values' : ['false', 'true'],
+      'initial' : 0
+    }
+  };
   const world_game_settings = {
     'forest' : {
       'Forest World' : { // MISC
@@ -575,33 +506,81 @@ $(document).ready(function () {
       }
     }
 
+    isTheLastOne() {
+      if(this.possible_values.indexOf(this.actual_value) == this.possible_values.length-1) {
+        return true;
+      }
+    }
+
+    isTheFirstOne() {
+      if(this.possible_values.indexOf(this.actual_value) == 0) {
+        return true;
+      }
+    }
+
     returnString() {
       return `${this.game_id} = "${this.actual_value}"`;
     }
   }
 
-  var world_settings_object_list = [];
+  class clusterSettingItem {
+    constructor(game_id, possible_values, actual_value) {
+      this.game_id = game_id;
+      this.possible_values = possible_values;
+      this.actual_value = actual_value;
+    }
 
-  getFromWorldSettingsObjectList = (id, world) => {
-    return world_settings_object_list.filter(setting => setting.game_id === id && setting.world === world)[0];
-  };
-
-  // Create settings item object
-  for(let world in world_game_settings) { // world = forest or caves
-    for(let category in world_game_settings[world]) { // MISC, RESOURCES, UNPREPARED, ANIMALS, MONSTERS
-      for(let item in world_game_settings[world][category]) { // settting item
-        if(['Forest World', 'Cave World'].includes(category)) {
-          world_settings_object_list.push(new worldSettingItem(item, world_game_settings[world][category][item]['title'], world_game_settings[world][category][item]['values'], 'default', world, category));
-        } else {
-          world_settings_object_list.push(new worldSettingItem(item, world_game_settings[world][category][item], common_values, 'default', world, category));
-        }
+    changeActual(new_value) {
+      if(this.possible_values.includes(new_value)) {
+        this.actual_value = new_value;
       }
+    }
+
+    previous() {
+      if(this.possible_values.indexOf(this.actual_value) > 0) {
+        let previous_value = this.possible_values[this.possible_values.indexOf(this.actual_value)-1];
+        this.changeActual(previous_value);
+        return previous_value;
+      }
+    }
+
+    next() {
+      if(this.possible_values.indexOf(this.actual_value) < this.possible_values.length-1) {
+        let next_value = this.possible_values[this.possible_values.indexOf(this.actual_value)+1];
+        this.changeActual(next_value);
+        return next_value;
+      }
+    }
+
+    isTheLastOne() {
+      if(this.possible_values.indexOf(this.actual_value) == this.possible_values.length-1) {
+        return true;
+      }
+    }
+
+    isTheFirstOne() {
+      if(this.possible_values.indexOf(this.actual_value) == 0) {
+        return true;
+      }
+    }
+
+    getActualValue() {
+      return this.actual_value;
     }
   }
 
-  // HTML items
-  var forest_html = [];
-  var caves_html = [];
+  // Creatse cluster settings item object
+  for(let item in cluster_game_settings) {
+    cluster_settings_object_list.push(new clusterSettingItem(item, cluster_game_settings[item]['values'], cluster_game_settings[item]['values'][cluster_game_settings[item]['initial']]))
+  }
+
+  getFromClusterSettingsObjectList = id => {
+    return cluster_settings_object_list.filter(setting => setting.game_id === id)[0].getActualValue();
+  }
+
+  getFromWorldSettingsObjectList = (id, world) => {
+    return world_settings_object_list.filter(setting => setting.game_id === id && setting.world === world)[0];
+  }
 
   buildHtmlItem = (game_id, title, actual_value) => {
     return (
@@ -615,8 +594,67 @@ $(document).ready(function () {
         </footer>
       </li>`
     );
-  };
+  }
 
+  checkSteamGroup = () => $('input[value="steamgroup"]').is(":checked") ? true : false;
+
+  checkIfCavesEnabled = () => $('#active_caves').css('display') == 'block' ? true : false;
+
+  generateClusterIni = () => {
+    let cluster_ini = (`[GAMEPLAY]\ngame_mode = ${getFromClusterSettingsObjectList('game_mode')}\nmax_players = ${$("input[name=max_players]").val()}\npvp = ${getFromClusterSettingsObjectList('pvp')}\npause_when_empty = ${getFromClusterSettingsObjectList('pause_when_empty')}\n[NETWORK]\ncluster_name = ${$("input[name=cluster_name]").val()}\ncluster_description = ${$("input[name=cluster_description]").val()}\ncluster_password = ${$("input[name=password]").val()}\ncluster_intention = ${cluster_intention.toLowerCase()}\nlan_only_cluster = ${getFromClusterSettingsObjectList('lan_only_cluster')}\noffline_cluster = ${getFromClusterSettingsObjectList('offline_cluster')}\ncluster_language = ${getFromClusterSettingsObjectList('cluster_language')}\nwhitelist_slots = ${$("input[name=whitelist_slots]").val()}\nautosaver_enabled = ${getFromClusterSettingsObjectList('autosaver_enabled')}\nenable_vote_kick = ${getFromClusterSettingsObjectList('enable_vote_kick')}\ntick_rate = ${$("input[name=tick_rate]").val()}\n[MISC]\nconsole_enabled = ${getFromClusterSettingsObjectList('console_enabled')}\nmax_snapshots = ${$("input[name=max_snapshots]").val()}\n[STEAM]\nsteam_group_only = ${checkSteamGroup()}\nsteam_group_id = ${$("input[name=steam_group_id]").val()}\nsteam_group_admins = ${$("span[name=steam_group_admins]").text().toLowerCase()}\n[SHARD]\nshard_enabled = ${checkIfCavesEnabled()}\nbind_ip = 127.0.0.1\nmaster_ip = 127.0.0.1\nmaster_port = 10888\ncluster_key = defaultPass`);
+    return cluster_ini;
+  }
+
+  generateMasterLevelDataOverride = () => {
+    let master_leveldataoverride = "return {\n";
+    for(let item in world_settings_object_list) {
+      if(world_settings_object_list[item].world == 'forest') {
+        master_leveldataoverride += `${world_settings_object_list[item].returnString()},\n`
+      }
+    }
+    master_leveldataoverride += "}";
+    return master_leveldataoverride;
+  }
+
+  generateCavesLevelDataOverride = () => {
+    let caves_leveldataoverride = "return {\n";
+    for(let item in world_settings_object_list) {
+      if(world_settings_object_list[item].world == 'caves') {
+        caves_leveldataoverride += `${world_settings_object_list[item].returnString()},\n`
+      }
+    }
+    caves_leveldataoverride += "}"; 
+    return caves_leveldataoverride;
+  }
+
+  generateMasterServerIni = () => {
+    let master_server_ini = (`[NETWORK]\nserver_port = 10999\n[SHARD]\nis_master = true\n[ACCOUNT]\nencode_user_path = true`);
+    return master_server_ini;
+  }
+
+  generateCavesServerIni = () => {
+    let caves_server_ini = (`[NETWORK]\nserver_port = 10998\n[SHARD]\nis_master = false\nname = Caves\n[ACCOUNT]encode_user_path = true\n[STEAM]\nmaster_server_port = 27017\nauthentication_port = 8767`);
+    return caves_server_ini;
+  }
+
+  generateClusterToken = () => {
+    let cluster_token = $("input[name=cluster_token]").val();
+    return cluster_token;
+  }
+
+  // Create settings item object
+  for(let world in world_game_settings) { // world = forest or caves
+    for(let category in world_game_settings[world]) { // MISC, RESOURCES, UNPREPARED, ANIMALS, MONSTERS
+      for(let item in world_game_settings[world][category]) { // settting item
+        if(['Forest World', 'Cave World'].includes(category)) {
+          world_settings_object_list.push(new worldSettingItem(item, world_game_settings[world][category][item]['title'], world_game_settings[world][category][item]['values'], 'default', world, category));
+        } else {
+          world_settings_object_list.push(new worldSettingItem(item, world_game_settings[world][category][item], common_values, 'default', world, category));
+        }
+      }
+    }
+  }
+  
   // Add settings itens to html
   for(let world in world_game_settings) {
     if(world == 'forest'){
@@ -641,8 +679,6 @@ $(document).ready(function () {
       }
     }
   }
-
   document.getElementById("forestSettings").innerHTML = forest_html;
   document.getElementById("cavesSettings").innerHTML = caves_html;
-
 });
