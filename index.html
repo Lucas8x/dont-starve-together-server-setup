@@ -7,12 +7,22 @@
     <meta name="author" content="Lucas Emanuel">
     <title>Don't Starve Together Server</title>
     <meta name="keywords" content="don't, starve, together, dedicated, server, setup">
-	<link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="shortcut icon" href="assets/favicon.ico">
     <link href="css/dstserver.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   </head>
   
   <body>
+    <ul id="clusterList">
+      <li class="active" value=1>
+        <img src="assets/tabSettings/frame.jpg">
+        <footer>
+          <span type="text">New World 1</span>
+          <span type="text">outra coisa 1</span>
+        </footer>
+      </li>
+    </ul>
+
     <div class="tabs">
       <button class="tabButton" value="settings">Settings</button>
       <button class="tabButton" value="forest">Forest</button>
@@ -88,7 +98,7 @@
             <button class="arrow-right"></button>
           </div>
 
-          <div id="players" class="option_background">
+          <div id="max_players" class="option_background">
             <span>Players: </span>
             <button class="arrow-left"></button>
             <input type="number" name="max_players" value="6" min="1" size="1">
@@ -109,6 +119,7 @@
 
           <div id="cluster_token" class="option_background">
             <span>Cluster Token: </span><input name="cluster_token" size="80">
+            <button class="help-btn"></button>
           </div>
 
           <div class="option_background">
@@ -141,6 +152,7 @@
               <button class="arrow-left"></button>
               <input type="number" name="tick_rate" value="15" min="0">
               <button class="arrow-right"></button>
+              <button class="help-btn"></button>
             </div>
 
             <div id="whitelist_slots" class="tiny_option_background">
@@ -188,7 +200,7 @@
 
         </div>
       </div>
-    
+
       <div id="forest" class="tab">
         <div class="option_background">Forest Presets
           <button class="arrow-left"></button>
@@ -221,7 +233,6 @@
 
         </div>
 
-
       </div>
 
       <div id="mods" class="tab">
@@ -230,12 +241,13 @@
     <div id="border2"></div>
 
     <div id="manage">
-      <!--<button id="loadServer" class="lb">Load Folder</button>-->
+      <button id="deleteServer" class="lb">Delete Server</button>
       <button id="generateServer" class="lb">Generate Server</button>
     </div>
-        
+    
     <script src="js/dstserver.js"></script>
     <script src="js/FileSaver.min.js"></script>
     <script src="js/jszip.min.js"></script>
+    <script src="js/lodash.min.js"></script>
   </body>
 </html>

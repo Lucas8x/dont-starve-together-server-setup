@@ -260,6 +260,46 @@ input[type="radio"]:checked {
   transform: scaleX(-1);
 }
 
+/* Cluster List */
+#clusterList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+}
+
+#clusterList li {
+  width: 150px;
+  display: flex;
+}
+
+#clusterList li.active {
+  background-color: red;
+}
+
+#clusterList li img {
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+
+#clusterList li footer {
+  float: right;
+}
+
+#clusterList li.active footer span:last-of-type {
+  display: block;
+  color: white;
+}
+
+#clusterList li footer span:last-of-type {
+  display: none;
+}
+
+#clusterList li footer span:first-of-type {
+  text-align: center;
+}
+
 /* TABS */
 .tabs {
   margin: auto;
@@ -337,6 +377,10 @@ input[type="radio"]:checked {
 }*/
 
 /* Settings Tab */
+
+#play_style_str, [name="game_mode"], [name="pvp"], [name="server_mode"], [name="console_enabled"], [name="offline_cluster"], [name="lan_only_cluster"], [name="autosaver_enabled"], [name="pause_when_empty"], [name="enable_vote_kick"] {
+  text-transform: capitalize;
+}
 
 #steamgroupinfo {
   display: none;
